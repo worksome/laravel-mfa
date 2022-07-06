@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/worksome/laravel-mfa/Check%20&%20fix%20styling?label=code%20style)](https://github.com/worksome/laravel-mfa/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/worksome/laravel-mfa.svg?style=flat-square)](https://packagist.org/packages/worksome/laravel-mfa)
 
-A driver-based MFA package for Laravel.
+A driver-based multifactor authentication package for Laravel
 
 ## Installation
 
