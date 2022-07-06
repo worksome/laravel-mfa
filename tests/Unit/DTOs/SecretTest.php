@@ -21,6 +21,7 @@ it(
         expect($secret->getUri())->toBe($fullUri);
     }
 )->with([
+    // phpcs:disable Generic.Files.LineLength
     'only secret' => [
         'otpauth://totp/Unknown?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ',
         'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ', null, null, null, null, null, null
@@ -67,4 +68,5 @@ it(
         'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ', null, null, null, null, null,
         'otpauth://totp/test-issuer:John%E2%80%99s%20Account%20Name?secret=GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ&issuer=test-issuer&algorithm=SHA1&digits=6&period=30'
     ],
+    // phpcs:enable
 ]);

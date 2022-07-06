@@ -20,7 +20,7 @@ class NullDriver implements Driver
         );
     }
 
-    public function getSecret(): Secret
+    public function getSecret(string $identifier, string $label = null): Secret
     {
         return $this->secret;
     }

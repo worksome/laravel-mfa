@@ -8,5 +8,5 @@ use Worksome\MultiFactorAuth\DTOs\Secret;
 
 interface Driver
 {
-    public function getSecret(): Secret;
+    public function getSecret(string $identifier, string $label = null): Secret;
 }

@@ -10,7 +10,7 @@ it('can fake secret details', function () {
         new Secret('FAKE_SECRET')
     );
 
-    expect(MultiFactorAuth::getSecret())
+    expect(MultiFactorAuth::getSecret('', ''))
         ->secret->toBe('FAKE_SECRET')
         ->issuer->toBeNull()
         ->label->toBeNull()
@@ -20,5 +20,5 @@ it('can fake secret details', function () {
 
     MultiFactorAuth::fake();
 
-    expect(MultiFactorAuth::getSecret()->secret)->toBe('NULL_DRIVER_SECRET');
+    expect(MultiFactorAuth::getSecret('', '')->secret)->toBe('NULL_DRIVER_SECRET');
 });
