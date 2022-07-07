@@ -15,6 +15,12 @@ return [
 
     'services' => [
 
+        'twilio_verify' => [
+            'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),
+            'token' => env('TWILIO_VERIFY_AUTH_TOKEN'),
+            'service_id' => env('TWILIO_VERIFY_SERVICE_ID'),
+        ],
+
     ],
 
 ];

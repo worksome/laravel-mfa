@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\Exceptions\Sms\InvalidPhoneNumberException;
 
