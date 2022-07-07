@@ -7,6 +7,7 @@ namespace Worksome\MultiFactorAuth\Services\TwilioVerify;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
+use Worksome\MultiFactorAuth\Enums\TwilioVerify\Factor;
 use Worksome\MultiFactorAuth\Exceptions\BaseException;
 
 class Client
@@ -30,24 +31,40 @@ class Client
     {
         $this->serviceIdRequired();
 
-        $response = $this->client()->post("/v2/Services/{$this->serviceId}/Verifications", [
+        return $this->client()->post("/v2/Services/{$this->serviceId}/Verifications", [
             'To' => $to,
             'Channel' => $channel->value,
         ])->throw()->json();
-
-        return $response;
     }
 
     public function sendVerificationCheck(string $to, string $code): array
     {
         $this->serviceIdRequired();
 
-        $response = $this->client()->post("/v2/Services/{$this->serviceId}/VerificationCheck", [
+        return $this->client()->post("/v2/Services/{$this->serviceId}/VerificationCheck", [
             'To' => $to,
             'Code' => $code,
         ])->throw()->json();
+    }
 
-        return $response;
+    public function sendCreateFactor(string $identifier, string $label, Factor $factor): array
+    {
+        $this->serviceIdRequired();
+
+        return $this->client()->post("/v2/Services/{$this->serviceId}/Entities/{$identifier}/Factors", [
+            'FriendlyName' => $label,
+            'FactorType' => $factor->value,
+        ])->throw()->json();
+    }
+
+    public function sendFactorChallengeCheck(string $identifier, string $factorId, string $code)
+    {
+        $this->serviceIdRequired();
+
+        return $this->client()->post("/v2/Services/{$this->serviceId}/Entities/{$identifier}/Challenges", [
+            'AuthPayload' => $code,
+            'FactorSid' => $factorId,
+        ])->throw()->json();
     }
 
     private function client(): PendingRequest

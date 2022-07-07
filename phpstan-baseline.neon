@@ -1,6 +1,16 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Method Worksome\\\\MultiFactorAuth\\\\Services\\\\TwilioVerify\\\\Client\\:\\:sendCreateFactor\\(\\) should return array but returns mixed\\.$#"
+			count: 1
+			path: src/Services/TwilioVerify/Client.php
+
+		-
+			message: "#^Method Worksome\\\\MultiFactorAuth\\\\Services\\\\TwilioVerify\\\\Client\\:\\:sendFactorChallengeCheck\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/TwilioVerify/Client.php
+
+		-
 			message: "#^Method Worksome\\\\MultiFactorAuth\\\\Services\\\\TwilioVerify\\\\Client\\:\\:sendVerification\\(\\) should return array but returns mixed\\.$#"
 			count: 1
 			path: src/Services/TwilioVerify/Client.php

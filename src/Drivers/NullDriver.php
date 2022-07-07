@@ -45,16 +45,16 @@ class NullDriver implements Driver, SupportsSms, SupportsEmail, SupportsTotp
         return $this->emailVerified ?? true;
     }
 
-    public function createTotp(string $identifier, string $label): TotpResponse
+    public function createTotp(string $issuer, string $identifier, string $label): TotpResponse
     {
         return new TotpResponse(
             $identifier,
             $this->totpStatus ?? Status::PENDING,
-            new TotpSecret('ABCDEFGHIJKLMNOP', 'NullDriver Issuer', $identifier, HashAlgorithm::SHA1, 6, 30)
+            new TotpSecret('ABCDEFGHIJKLMNOP', $issuer, $identifier, HashAlgorithm::SHA1, 6, 30)
         );
     }
 
-    public function verifyTotp(string $identifier, string $code): bool
+    public function verifyTotp(string $identifier, string $code, array $data = []): bool
     {
         return $this->totpVerified ?? true;
     }

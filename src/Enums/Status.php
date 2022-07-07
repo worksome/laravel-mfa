@@ -15,7 +15,7 @@ enum Status: string
     {
         return match ($status) {
             'approved' => self::APPROVED,
-            'pending' => self::PENDING,
+            'pending', 'unverified' => self::PENDING,
             'canceled' => self::CANCELLED,
             default => self::FAILED,
         };
