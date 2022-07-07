@@ -8,7 +8,7 @@ return [
      * Go ahead and select a default exchange driver to be used when
      * generating multifactor authentication.
      *
-     * Supported: 'null'
+     * Supported: 'null', 'twilio_verify'
      */
 
     'default' => env('MFA_DRIVER', 'null'),
