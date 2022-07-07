@@ -17,6 +17,6 @@ final class MultiFactorManager extends Manager
 
     public function createNullDriver(): NullDriver
     {
-        return NullDriver::make('NULL_DRIVER_SECRET');
+        return new NullDriver();
     }
 }

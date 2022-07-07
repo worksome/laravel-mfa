@@ -13,13 +13,13 @@ class MultiFactorAuth
 {
     use ForwardsCalls;
 
-    private ?Driver $driver = null;
+    private Driver|null $driver = null;
 
     public function __construct(private readonly MultiFactorManager $multiFactorManager)
     {
     }
 
-    public function usingDriver(?Driver $driver): self
+    public function usingDriver(Driver|null $driver): self
     {
         $this->driver = $driver;
 
