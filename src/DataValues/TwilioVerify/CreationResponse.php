@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\DataValues\Sms;
+namespace Worksome\MultiFactorAuth\DataValues\TwilioVerify;
 
-use Worksome\MultiFactorAuth\Enums\Sms\Status;
+use Worksome\MultiFactorAuth\Enums\Status;
 
-class SmsCreationResponse
+class CreationResponse
 {
     public function __construct(
         public readonly Status $status,

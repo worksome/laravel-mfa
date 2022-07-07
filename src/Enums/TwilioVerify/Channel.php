@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\Enums\Sms;
+namespace Worksome\MultiFactorAuth\Enums\TwilioVerify;
 
-enum TwilioVerifyChannel: string
+enum Channel: string
 {
     case EMAIL = 'email';
     case SMS = 'sms';

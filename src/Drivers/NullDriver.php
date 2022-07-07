@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Drivers;
 
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
 use Worksome\MultiFactorAuth\Contracts\Driver;
+use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
-use Worksome\MultiFactorAuth\DataValues\Sms\SmsCreationResponse;
-use Worksome\MultiFactorAuth\Enums\Sms\Status as SmsStatus;
+use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
+use Worksome\MultiFactorAuth\Drivers\Concerns\CanFakeEmailVerification;
+use Worksome\MultiFactorAuth\Drivers\Concerns\CanFakeSmsVerification;
+use Worksome\MultiFactorAuth\Enums\Status;
 
-class NullDriver implements Driver, SupportsSms
+class NullDriver implements Driver, SupportsSms, SupportsEmail
 {
-    private SmsStatus $smsStatus;
-    private bool $smsVerified;
+    use CanFakeEmailVerification;
+    use CanFakeSmsVerification;
 
-    public function sendSms(E164PhoneNumber $to): SmsCreationResponse
+    public function sendSms(E164PhoneNumber $to): CreationResponse
     {
-        return new SmsCreationResponse($this->smsStatus ?? SmsStatus::PENDING);
+        return new CreationResponse($this->smsStatus ?? Status::PENDING);
     }
 
     public function verifySms(E164PhoneNumber $to, string $code): bool
@@ -25,17 +29,13 @@ class NullDriver implements Driver, SupportsSms
         return $this->smsVerified ?? true;
     }
 
-    public function withSmsStatus(SmsStatus $status): self
+    public function sendEmail(EmailAddress $to): CreationResponse
     {
-        $this->smsStatus = $status;
-
-        return $this;
+        return new CreationResponse($this->emailStatus ?? Status::PENDING);
     }
 
-    public function withSmsVerified(bool $verified = true): self
+    public function verifyEmail(EmailAddress $to, string $code): bool
     {
-        $this->smsVerified = $verified;
-
-        return $this;
+        return $this->emailVerified ?? true;
     }
 }

@@ -6,7 +6,7 @@ namespace Worksome\MultiFactorAuth\Services\TwilioVerify;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
-use Worksome\MultiFactorAuth\Enums\Sms\TwilioVerifyChannel;
+use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Exceptions\BaseException;
 
 class Client
@@ -26,7 +26,7 @@ class Client
         return new self($this->client, $this->accountId, $this->token, $service);
     }
 
-    public function sendVerification(string $to, TwilioVerifyChannel $channel): array
+    public function sendVerification(string $to, Channel $channel): array
     {
         $this->serviceIdRequired();
 

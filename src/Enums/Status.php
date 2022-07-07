@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\Enums\Sms;
+namespace Worksome\MultiFactorAuth\Enums;
 
 enum Status: string
 {

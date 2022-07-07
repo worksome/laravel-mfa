@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Http\Client\Factory;
-use Worksome\MultiFactorAuth\Enums\Sms\Status;
-use Worksome\MultiFactorAuth\Enums\Sms\TwilioVerifyChannel;
+use Worksome\MultiFactorAuth\Enums\Status;
+use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Exceptions\BaseException;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
@@ -24,7 +24,7 @@ it('can retrieve an SMS response from the Twilio Verify API', function () {
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $response = $client->sendVerification('+15017122661', TwilioVerifyChannel::SMS);
+    $response = $client->sendVerification('+15017122661', Channel::SMS);
 
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
@@ -66,7 +66,7 @@ it('throws an exception when no service id is provided', function () {
         'aaaabbbbccccddddeeeeffff1111'
     );
 
-    $client->sendVerification('+15017122661', TwilioVerifyChannel::SMS);
+    $client->sendVerification('+15017122661', Channel::SMS);
 })->throws(
     BaseException::class,
     'A valid service token is required for this Twilio Verify request, none provided.'

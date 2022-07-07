@@ -7,9 +7,9 @@ namespace Worksome\MultiFactorAuth\Drivers;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
 use Worksome\MultiFactorAuth\Contracts\Driver;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
-use Worksome\MultiFactorAuth\DataValues\Sms\SmsCreationResponse;
-use Worksome\MultiFactorAuth\Enums\Sms\Status;
-use Worksome\MultiFactorAuth\Enums\Sms\TwilioVerifyChannel;
+use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
+use Worksome\MultiFactorAuth\Enums\Status;
+use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
 class TwilioVerifyDriver implements Driver, SupportsSms
@@ -18,13 +18,13 @@ class TwilioVerifyDriver implements Driver, SupportsSms
     {
     }
 
-    public function sendSms(E164PhoneNumber $to): SmsCreationResponse
+    public function sendSms(E164PhoneNumber $to): CreationResponse
     {
-        $data = $this->client->sendVerification($to->number, TwilioVerifyChannel::SMS);
+        $data = $this->client->sendVerification($to->number, Channel::SMS);
 
         assert(isset($data['status']));
 
-        return new SmsCreationResponse(
+        return new CreationResponse(
             Status::fromTwilioVerify($data['status']),
             $data
         );
