@@ -29,7 +29,7 @@ it('can retrieve an SMS response from the Twilio Verify API', function () {
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('+15017122661')
-        ->channel->toBe('sms');
+        ->channel->toBe(Channel::SMS->value);
 });
 
 it('can retrieve an SMS response from the Twilio Verify API check', function () {
@@ -53,7 +53,7 @@ it('can retrieve an SMS response from the Twilio Verify API check', function () 
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('+15017122661')
-        ->channel->toBe('sms')
+        ->channel->toBe(Channel::SMS->value)
         ->status->toBe(Status::APPROVED->value);
 });
 
