@@ -7,4 +7,6 @@ namespace Worksome\MultiFactorAuth\Contracts;
 interface MultiFactorAuthenticatable
 {
     public function isMultiFactorAuthenticationEnabled(): bool;
+
+    public function multiFactors(): bool;
 }

@@ -11,6 +11,8 @@ use Worksome\MultiFactorAuth\Models\MultiFactor;
 /** @mixin Model */
 trait HasMultiFactorAuthentication
 {
+    abstract public function isMultiFactorAuthenticationEnabled(): HasMany;
+
     public function multiFactors(): HasMany
     {
         return $this->hasMany(MultiFactor::class);
