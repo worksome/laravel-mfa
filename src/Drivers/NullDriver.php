@@ -10,6 +10,7 @@ use Worksome\MultiFactorAuth\Contracts\Channels\SupportsTotp;
 use Worksome\MultiFactorAuth\Contracts\Driver;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
+use Worksome\MultiFactorAuth\DataValues\Totp\TotpIdentifier;
 use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\TotpResponse;
@@ -45,16 +46,16 @@ class NullDriver implements Driver, SupportsSms, SupportsEmail, SupportsTotp
         return $this->emailVerified ?? true;
     }
 
-    public function createTotp(string $issuer, string $identifier, string $label): TotpResponse
+    public function createTotp(string $issuer, TotpIdentifier $identifier, string $label): TotpResponse
     {
         return new TotpResponse(
             $identifier,
             $this->totpStatus ?? Status::PENDING,
-            new TotpSecret('ABCDEFGHIJKLMNOP', $issuer, $identifier, HashAlgorithm::SHA1, 6, 30)
+            new TotpSecret('ABCDEFGHIJKLMNOP', $issuer, $identifier->identifier, HashAlgorithm::SHA1, 6, 30)
         );
     }
 
-    public function verifyTotp(string $identifier, string $code, array $data = []): bool
+    public function verifyTotp(TotpIdentifier $identifier, string $code): bool
     {
         return $this->totpVerified ?? true;
     }

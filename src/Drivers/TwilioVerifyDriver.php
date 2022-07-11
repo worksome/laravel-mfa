@@ -10,6 +10,7 @@ use Worksome\MultiFactorAuth\Contracts\Channels\SupportsTotp;
 use Worksome\MultiFactorAuth\Contracts\Driver;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
+use Worksome\MultiFactorAuth\DataValues\Totp\TotpIdentifier;
 use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\TotpResponse;
@@ -67,9 +68,9 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms, Supports
         return Status::fromTwilioVerify($data['status']) === Status::APPROVED;
     }
 
-    public function createTotp(string $issuer, string $identifier, string $label): TotpResponse
+    public function createTotp(string $issuer, TotpIdentifier $identifier, string $label): TotpResponse
     {
-        $data = $this->client->sendCreateFactor($identifier, $label, Factor::TOTP);
+        $data = $this->client->sendCreateFactor($identifier->identifier, $label, Factor::TOTP);
 
         assert(isset($data['status']));
 
@@ -84,18 +85,18 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms, Supports
         );
 
         return new TotpResponse(
-            $identifier,
+            new TotpIdentifier($identifier->identifier, ['factor_id' => $data['sid']]),
             Status::fromTwilioVerify($data['status']),
             $secret,
             $data
         );
     }
 
-    public function verifyTotp(string $identifier, string $code, array $data = []): bool
+    public function verifyTotp(TotpIdentifier $identifier, string $code): bool
     {
-        assert(isset($data['factor_id']));
+        assert(isset($identifier->data['factor_id']));
 
-        $data = $this->client->sendFactorChallengeCheck($identifier, $data['factor_id'], $code);
+        $data = $this->client->sendFactorChallengeCheck($identifier->identifier, $identifier->data['factor_id'], $code);
 
         assert(isset($data['status']));
 

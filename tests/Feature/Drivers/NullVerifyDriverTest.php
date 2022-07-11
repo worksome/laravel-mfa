@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Worksome\MultiFactorAuth\DataValues\Totp\TotpIdentifier;
 use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\TotpResponse;
 use Worksome\MultiFactorAuth\Drivers\NullDriver;
@@ -13,13 +14,15 @@ it('can retrieve a TOTP Verify response from the Null driver', function () {
 
     $status = $driver->createTotp(
         'Test Issuer',
-        'test@example.org',
+        $identifier = new TotpIdentifier('test@example.org'),
         'Test'
     );
 
     expect($status)->toBeInstanceOf(TotpResponse::class)
         ->status->toBe(Status::PENDING)
-        ->identifier->toBe('test@example.org')
+        ->identifier->toBe($identifier)
+        ->identifier->identifier->toBe('test@example.org')
+        ->identifier->data->toBeArray()->toBeEmpty()
         ->data->toBeArray()
         ->secret->toBeInstanceOf(TotpSecret::class)
         ->secret->secret->toBe('ABCDEFGHIJKLMNOP')

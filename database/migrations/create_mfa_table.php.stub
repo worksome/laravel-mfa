@@ -8,11 +8,12 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('laravel_mfa_table', function (Blueprint $table) {
+        Schema::create('mfa_factors', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('user_id');
             $table->string('name');
-            $table->string('secret');
+            $table->json('data')->default('{}');
 
             $table->timestamps();
         });

@@ -5,6 +5,12 @@ declare(strict_types=1);
 return [
 
     /**
+     * The user model to support multifactor authentication.
+     */
+
+    'user' => \App\Models\User::class,
+
+    /**
      * Go ahead and select a default exchange driver to be used when
      * generating multifactor authentication.
      *
