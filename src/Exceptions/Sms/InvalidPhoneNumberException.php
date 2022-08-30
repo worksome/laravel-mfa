@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Exceptions\Sms;
 
-use Worksome\MultiFactorAuth\Exceptions\BaseException;
+use InvalidArgumentException;
+use Worksome\MultiFactorAuth\Exceptions\MultiFactorAuthException;
 
-class InvalidPhoneNumberException extends BaseException
+class InvalidPhoneNumberException extends InvalidArgumentException implements MultiFactorAuthException
 {
 }

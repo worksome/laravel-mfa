@@ -8,7 +8,7 @@ use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Enums\TwilioVerify\Factor;
-use Worksome\MultiFactorAuth\Exceptions\BaseException;
+use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
 
 class Client
 {
@@ -81,7 +81,7 @@ class Client
     {
         throw_if(
             $this->serviceId === null,
-            BaseException::class,
+            InvalidValueException::class,
             'A valid service token is required for this Twilio Verify request, none provided.'
         );
     }

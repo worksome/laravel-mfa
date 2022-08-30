@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Enums;
 
-use Worksome\MultiFactorAuth\Exceptions\BaseException;
+use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
 
 enum HashAlgorithm: string
 {
@@ -18,7 +18,7 @@ enum HashAlgorithm: string
             'SHA1' => self::SHA1,
             'SHA256' => self::SHA256,
             'SHA512' => self::SHA512,
-            default => throw new BaseException("Invalid hash algorithm returned from Twilio Verify: {$algorithm}"),
+            default => throw new InvalidValueException("Invalid hash algorithm returned from Twilio Verify: {$algorithm}"),
         };
     }
 }
