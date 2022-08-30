@@ -6,13 +6,18 @@ namespace Worksome\MultiFactorAuth\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Worksome\MultiFactorAuth\Contracts\MultiFactorAuthenticatable;
 use Worksome\MultiFactorAuth\Models\MultiFactor;
 
-/** @mixin Model */
+/**
+ * @mixin Model
+ * @implements MultiFactorAuthenticatable
+ */
 trait HasMultiFactorAuthentication
 {
-    abstract public function isMultiFactorAuthenticationEnabled(): HasMany;
+    abstract public function isMultiFactorAuthenticationEnabled(): bool;
 
+    /** @return HasMany<MultiFactor> */
     public function multiFactors(): HasMany
     {
         return $this->hasMany(MultiFactor::class);
