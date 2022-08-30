@@ -17,6 +17,8 @@ use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableExcepti
  */
 class MultiFactor extends Model
 {
+    protected $table = 'mfa_multi_factors';
+
     /** @return BelongsTo<self, MultiFactorAuthenticatable&Model> */
     public function user(): BelongsTo
     {
