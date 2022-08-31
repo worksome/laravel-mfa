@@ -47,26 +47,6 @@ class Client
         ])->throw()->json();
     }
 
-    public function sendCreateFactor(string $identifier, string $label, Factor $factor): array
-    {
-        $this->serviceIdRequired();
-
-        return $this->client()->post("/v2/Services/{$this->serviceId}/Entities/{$identifier}/Factors", [
-            'FriendlyName' => $label,
-            'FactorType' => $factor->value,
-        ])->throw()->json();
-    }
-
-    public function sendFactorChallengeCheck(string $identifier, string $factorId, string $code)
-    {
-        $this->serviceIdRequired();
-
-        return $this->client()->post("/v2/Services/{$this->serviceId}/Entities/{$identifier}/Challenges", [
-            'AuthPayload' => $code,
-            'FactorSid' => $factorId,
-        ])->throw()->json();
-    }
-
     private function client(): PendingRequest
     {
         return $this

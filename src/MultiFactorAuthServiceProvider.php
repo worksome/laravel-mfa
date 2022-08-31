@@ -19,6 +19,6 @@ class MultiFactorAuthServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-mfa')
             ->hasConfigFile()
-            ->hasMigration('create_mfa_table');
+            ->hasMigration('create_mfa_multi_factors_table');
     }
 }

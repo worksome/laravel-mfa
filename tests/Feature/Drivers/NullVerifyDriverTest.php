@@ -2,36 +2,74 @@
 
 declare(strict_types=1);
 
-use Worksome\MultiFactorAuth\DataValues\Totp\TotpIdentifier;
-use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
-use Worksome\MultiFactorAuth\DataValues\TwilioVerify\TotpResponse;
+use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
+use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\NullDriver;
-use Worksome\MultiFactorAuth\Enums\HashAlgorithm;
 use Worksome\MultiFactorAuth\Enums\Status;
 
-it('can retrieve a TOTP Verify response from the Null driver', function () {
-    $driver = new NullDriver();
+it('can send SMS from the Null driver', function () {
+    $driver = NullDriver::make()
+        ->withSmsStatus(Status::PENDING)
+        ->withSmsVerified();
 
-    $status = $driver->createTotp(
-        'Test Issuer',
-        $identifier = new TotpIdentifier('test@example.org'),
-        'Test'
+    $status = $driver->sendSms(
+        new E164PhoneNumber('+14155552671'),
     );
 
-    expect($status)->toBeInstanceOf(TotpResponse::class)
-        ->status->toBe(Status::PENDING)
-        ->identifier->toBe($identifier)
-        ->identifier->identifier->toBe('test@example.org')
-        ->identifier->data->toBeArray()->toBeEmpty()
-        ->data->toBeArray()
-        ->secret->toBeInstanceOf(TotpSecret::class)
-        ->secret->secret->toBe('ABCDEFGHIJKLMNOP')
-        ->secret->issuer->toBe('Test Issuer')
-        ->secret->label->toBe('test@example.org')
-        ->secret->algorithm->toBe(HashAlgorithm::SHA1)
-        ->secret->digits->toBe(6)
-        ->secret->period->toBe(30)
-        ->secret->uri()->toBe(
-            'otpauth://totp/Test%20Issuer:test%40example.org?secret=ABCDEFGHIJKLMNOP&issuer=Test%20Issuer&algorithm=SHA1&digits=6&period=30'
-        );
+    expect($status)->toBeInstanceOf(CreationResponse::class)
+        ->status->toBe(Status::PENDING);
+});
+
+it('can verify SMS from the Null driver', function () {
+    $driver = NullDriver::make()
+        ->withSmsStatus(Status::PENDING)
+        ->withSmsVerified(false);
+
+    $phoneNumber = new E164PhoneNumber('+14155552671');
+
+    expect(
+        $driver->verifySms($phoneNumber, '123456')
+    )->toBeFalse();
+
+    $driver
+        ->withSmsStatus(Status::APPROVED)
+        ->withSmsVerified();
+
+    expect(
+        $driver->verifySms($phoneNumber, '123456')
+    )->toBeTrue();
+});
+
+it('can send Email from the Null driver', function () {
+    $driver = NullDriver::make()
+        ->withEmailStatus(Status::PENDING)
+        ->withEmailVerified();
+
+    $status = $driver->sendEmail(
+        new EmailAddress('test@example.org'),
+    );
+
+    expect($status)->toBeInstanceOf(CreationResponse::class)
+        ->status->toBe(Status::PENDING);
+});
+
+it('can verify Email from the Null driver', function () {
+    $driver = NullDriver::make()
+        ->withEmailStatus(Status::PENDING)
+        ->withEmailVerified(false);
+
+    $emailAddress = new EmailAddress('test@example.org');
+
+    expect(
+        $driver->verifyEmail($emailAddress, '123456')
+    )->toBeFalse();
+
+    $driver
+        ->withEmailStatus(Status::APPROVED)
+        ->withEmailVerified();
+
+    expect(
+        $driver->verifyEmail($emailAddress, '123456')
+    )->toBeTrue();
 });

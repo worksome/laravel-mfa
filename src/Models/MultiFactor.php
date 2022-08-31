@@ -14,15 +14,11 @@ use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableExcepti
  * @property int    $id
  * @property int    $user_id
  * @property string $name
- * @property array $data
+ * @property string $type
  */
 class MultiFactor extends Model
 {
     protected $table = 'mfa_multi_factors';
-
-    protected $casts = [
-        'data' => 'json',
-    ];
 
     /** @return BelongsTo<self, MultiFactorAuthenticatable&Model> */
     public function user(): BelongsTo
