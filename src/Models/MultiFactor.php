@@ -4,21 +4,41 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
+use Worksome\MultiFactorAuth\Casts\ToFieldCaster;
 use Worksome\MultiFactorAuth\Contracts\MultiFactorAuthenticatable;
+use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
+use Worksome\MultiFactorAuth\Enums\Channel;
+use Worksome\MultiFactorAuth\Enums\Status;
 use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableException;
 
 /**
- * @property int    $id
- * @property int    $user_id
+ * @property int $id
+ * @property int $user_id
  * @property string $name
- * @property string $type
+ * @property EmailAddress|E164PhoneNumber $to
+ * @property Channel $channel
+ * @property Status $status
+ * @property bool $is_valid
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ *
+ * @property MultiFactorAuthenticatable&Model $user
  */
 class MultiFactor extends Model
 {
     protected $table = 'mfa_multi_factors';
+
+    protected $guarded = [];
+
+    protected $casts = [
+        'channel' => Channel::class,
+        'to' => ToFieldCaster::class,
+    ];
 
     /** @return BelongsTo<self, MultiFactorAuthenticatable&Model> */
     public function user(): BelongsTo
@@ -31,7 +51,7 @@ class MultiFactor extends Model
         }
 
         if (! Arr::exists((array) class_implements($userModel), MultiFactorAuthenticatable::class)) {
-            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'.");
+            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '".MultiFactorAuthenticatable::class."'.");
         }
 
         return $this->belongsTo($userModel);

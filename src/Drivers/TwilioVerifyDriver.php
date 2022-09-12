@@ -10,8 +10,8 @@ use Worksome\MultiFactorAuth\Contracts\Driver;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
+use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Enums\Status;
-use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
 class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms

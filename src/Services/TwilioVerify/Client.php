@@ -6,7 +6,7 @@ namespace Worksome\MultiFactorAuth\Services\TwilioVerify;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
-use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
+use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Enums\TwilioVerify\Factor;
 use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
 

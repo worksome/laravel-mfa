@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\Enums\TwilioVerify;
+namespace Worksome\MultiFactorAuth\Enums;
 
 enum Channel: string
 {

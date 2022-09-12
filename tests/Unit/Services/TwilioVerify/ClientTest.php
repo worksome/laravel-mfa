@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Http\Client\Factory;
+use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Enums\Status;
-use Worksome\MultiFactorAuth\Enums\TwilioVerify\Channel;
 use Worksome\MultiFactorAuth\Enums\TwilioVerify\Factor;
 use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
