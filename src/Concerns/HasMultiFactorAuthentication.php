@@ -10,8 +10,7 @@ use Worksome\MultiFactorAuth\Contracts\MultiFactorAuthenticatable;
 use Worksome\MultiFactorAuth\Models\MultiFactor;
 
 /**
- * @mixin Model
- * @mixin MultiFactorAuthenticatable
+ * @mixin Model&MultiFactorAuthenticatable
  */
 trait HasMultiFactorAuthentication
 {
