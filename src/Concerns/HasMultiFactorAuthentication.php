@@ -11,6 +11,7 @@ use Worksome\MultiFactorAuth\Models\MultiFactor;
 
 /**
  * @mixin Model
+ * @mixin MultiFactorAuthenticatable
  */
 trait HasMultiFactorAuthentication
 {
