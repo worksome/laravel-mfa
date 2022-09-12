@@ -32,20 +32,44 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    /**
+     * The user model to support multifactor authentication.
+     */
+
+    'user' => \App\Models\User::class,
+
+    /**
+     * Go ahead and select a default exchange driver to be used when
+     * generating multifactor authentication.
+     *
+     * Supported: 'null', 'twilio_verify'
+     */
+
+    'default' => env('MFA_DRIVER', 'null'),
+
+    'services' => [
+
+        'twilio_verify' => [
+            'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),
+            'token' => env('TWILIO_VERIFY_AUTH_TOKEN'),
+            'service_id' => env('TWILIO_VERIFY_SERVICE_ID'),
+        ],
+
+    ],
+
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-mfa-views"
 ```
 
 ## Usage
 
 ```php
-$twoFactorAuth = new Worksome\TwoFactorAuth();
-echo $twoFactorAuth->echoPhrase('Hello, Worksome!');
+$twoFactorAuth = new \Worksome\MultiFactorAuth\MultiFactorAuth();
+$response = $twoFactorAuth->sendSms(
+    new \Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber('+14155552671'),
+);
+
+dd($response);
 ```
 
 ## Testing
@@ -68,7 +92,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Owen Voke](https://github.com/worksome)
+- [Owen Voke](https://github.com/owenvoke)
 - [All Contributors](../../contributors)
 
 ## License
