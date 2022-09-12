@@ -19,9 +19,9 @@ class NullDriver implements Driver, SupportsSms, SupportsEmail
     use CanFakeEmailVerification;
     use CanFakeSmsVerification;
 
-    public static function make(): static
+    public static function make(): self
     {
-        return new static();
+        return new self();
     }
 
     public function sendSms(E164PhoneNumber $to): CreationResponse
