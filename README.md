@@ -1,11 +1,11 @@
 # Laravel Multi-Factor Authentication
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/worksome/laravel-mfa.svg?style=flat-square)](https://packagist.org/packages/worksome/laravel-mfa)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/worksome/laravel-mfa/run-tests?label=tests)](https://github.com/worksome/laravel-mfa/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/worksome/laravel-mfa/Check%20&%20fix%20styling?label=code%20style)](https://github.com/worksome/laravel-mfa/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/worksome/laravel-mfa/Tests?label=tests)](https://github.com/worksome/laravel-mfa/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/worksome/laravel-mfa/Static%20Analysis?label=code%20style)](https://github.com/worksome/laravel-mfa/actions?query=workflow%3A"Static+Analysis"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/worksome/laravel-mfa.svg?style=flat-square)](https://packagist.org/packages/worksome/laravel-mfa)
 
-A driver-based MFA package for Laravel.
+A driver-based multifactor authentication package for Laravel
 
 ## Installation
 
@@ -32,20 +32,44 @@ This is the contents of the published config file:
 
 ```php
 return [
+
+    /**
+     * The user model to support multifactor authentication.
+     */
+
+    'user' => \App\Models\User::class,
+
+    /**
+     * Go ahead and select a default exchange driver to be used when
+     * generating multifactor authentication.
+     *
+     * Supported: 'null', 'twilio_verify'
+     */
+
+    'default' => env('MFA_DRIVER', 'null'),
+
+    'services' => [
+
+        'twilio_verify' => [
+            'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),
+            'token' => env('TWILIO_VERIFY_AUTH_TOKEN'),
+            'service_id' => env('TWILIO_VERIFY_SERVICE_ID'),
+        ],
+
+    ],
+
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-mfa-views"
 ```
 
 ## Usage
 
 ```php
-$twoFactorAuth = new Worksome\TwoFactorAuth();
-echo $twoFactorAuth->echoPhrase('Hello, Worksome!');
+$twoFactorAuth = new \Worksome\MultiFactorAuth\MultiFactorAuth();
+$response = $twoFactorAuth->sendSms(
+    new \Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber('+14155552671'),
+);
+
+dd($response);
 ```
 
 ## Testing
@@ -68,7 +92,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Owen Voke](https://github.com/worksome)
+- [Owen Voke](https://github.com/owenvoke)
 - [All Contributors](../../contributors)
 
 ## License

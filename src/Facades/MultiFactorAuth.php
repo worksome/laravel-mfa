@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace Worksome\MultiFactorAuth\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
 
 /**
- * @see \Worksome\MultiFactorAuth\MultiFactorAuth
+ * @see SupportsSms
+ * @mixin \Worksome\MultiFactorAuth\MultiFactorAuth
  */
 class MultiFactorAuth extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
-        return 'laravel-mfa';
+        return \Worksome\MultiFactorAuth\MultiFactorAuth::class;
     }
 }

@@ -1,0 +1,13 @@
+{
+    "sid": "VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "service_sid": "VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "account_sid": "ACXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "to": "+15017122661",
+    "channel": "sms",
+    "status": "approved",
+    "valid": true,
+    "amount": null,
+    "payee": null,
+    "date_created": "2015-07-30T20:00:00Z",
+    "date_updated": "2015-07-30T20:00:00Z"
+}
