@@ -72,10 +72,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Worksome\\MultiFactorAuth\\TwoFactorAuthServiceProvider"
+                "Worksome\\MultiFactorAuth\\MultiFactorAuthServiceProvider"
             ],
             "aliases": {
-                "TwoFactorAuth": "Worksome\\MultiFactorAuth\\Facades\\TwoFactorAuth"
+                "MultiFactorAuth": "Worksome\\MultiFactorAuth\\Facades\\MultiFactorAuth"
             }
         }
     },
