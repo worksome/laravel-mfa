@@ -37,6 +37,7 @@ class MultiFactor extends Model
 
     protected $casts = [
         'channel' => Channel::class,
+        'status' => Status::class,
         'to' => ToFieldCaster::class,
     ];
 
