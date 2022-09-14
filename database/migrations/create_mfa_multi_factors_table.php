@@ -19,6 +19,8 @@ return new class extends Migration
             $table->boolean('is_valid')->default(false);
 
             $table->timestamps();
+
+            $table->unique(['to', 'channel']);
         });
     }
 
