@@ -9,9 +9,9 @@ use Worksome\MultiFactorAuth\Exceptions\Email\InvalidEmailAddressException;
 /** @link https://datatracker.ietf.org/doc/html/rfc5322 */
 class EmailAddress
 {
-    public function __construct(public readonly string $value)
+    public function __construct(public readonly string $data)
     {
-        if (! filter_var($this->value, FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($this->data, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidEmailAddressException(
                 'The provided email address is not valid.'
             );

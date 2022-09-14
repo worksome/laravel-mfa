@@ -8,7 +8,7 @@ use Worksome\MultiFactorAuth\Exceptions\Sms\InvalidPhoneNumberException;
 it('can create a valid E.164 phone number', function () {
     expect(new E164PhoneNumber('+442071838750'))
         ->toBeInstanceOf(E164PhoneNumber::class)
-        ->value->toBe('+442071838750');
+        ->data->toBe('+442071838750');
 });
 
 it('throws an exception for a non-E.164 phone number', function (string $number) {

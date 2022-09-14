@@ -8,7 +8,7 @@ use Worksome\MultiFactorAuth\Exceptions\Email\InvalidEmailAddressException;
 it('can create a valid email address', function () {
     expect(new EmailAddress('test@example.org'))
         ->toBeInstanceOf(EmailAddress::class)
-        ->value->toBe('test@example.org');
+        ->data->toBe('test@example.org');
 });
 
 it('throws an exception for an invalid email address', function (string $email) {
