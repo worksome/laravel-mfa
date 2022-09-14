@@ -34,9 +34,6 @@ class ToFieldCaster implements CastsAttributes
             throw new InvalidArgumentException('The given value is not an E.164 Phone Number or Email Address instance.');
         }
 
-        return match(true) {
-            $value instanceof EmailAddress => $value->address,
-            $value instanceof E164PhoneNumber => $value->number,
-        };
+        return $value->value;
     }
 }

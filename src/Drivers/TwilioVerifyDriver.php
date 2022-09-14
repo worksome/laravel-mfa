@@ -22,7 +22,7 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms
 
     public function sendSms(E164PhoneNumber $to): CreationResponse
     {
-        $data = $this->client->sendVerification($to->number, Channel::SMS);
+        $data = $this->client->sendVerification($to->value, Channel::SMS);
 
         assert(isset($data['status']));
 
@@ -34,7 +34,7 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms
 
     public function verifySms(E164PhoneNumber $to, string $code): bool
     {
-        $data = $this->client->sendVerificationCheck($to->number, $code);
+        $data = $this->client->sendVerificationCheck($to->value, $code);
 
         assert(isset($data['status']));
 
@@ -43,7 +43,7 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms
 
     public function sendEmail(EmailAddress $to): CreationResponse
     {
-        $data = $this->client->sendVerification($to->address, Channel::EMAIL);
+        $data = $this->client->sendVerification($to->value, Channel::EMAIL);
 
         assert(isset($data['status']));
 
@@ -55,7 +55,7 @@ class TwilioVerifyDriver implements Driver, SupportsEmail, SupportsSms
 
     public function verifyEmail(EmailAddress $to, string $code): bool
     {
-        $data = $this->client->sendVerificationCheck($to->address, $code);
+        $data = $this->client->sendVerificationCheck($to->value, $code);
 
         assert(isset($data['status']));
 
