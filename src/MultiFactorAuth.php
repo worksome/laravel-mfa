@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth;
 
-use Illuminate\Support\Traits\ForwardsCalls;
 use Worksome\MultiFactorAuth\Contracts\Channels\ChannelDriver;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
@@ -18,8 +17,6 @@ use Worksome\MultiFactorAuth\Managers\MultiFactorSmsManager;
  */
 class MultiFactorAuth
 {
-    use ForwardsCalls;
-
     /** @var array<string, ChannelDriver> $drivers */
     private array $drivers = [];
 
