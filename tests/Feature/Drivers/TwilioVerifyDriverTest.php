@@ -6,7 +6,8 @@ use Illuminate\Http\Client\Factory;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
-use Worksome\MultiFactorAuth\Drivers\TwilioVerifyDriver;
+use Worksome\MultiFactorAuth\Drivers\Email\TwilioVerifyEmailDriver;
+use Worksome\MultiFactorAuth\Drivers\Sms\TwilioVerifySmsDriver;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Enums\Status;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
@@ -27,7 +28,7 @@ it('can retrieve an SMS Verification response from the Twilio Verify driver', fu
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $driver = new TwilioVerifyDriver($client);
+    $driver = new TwilioVerifySmsDriver($client);
 
     $status = $driver->sendSms(new E164PhoneNumber('+15017122661'));
 
@@ -56,7 +57,7 @@ it('can retrieve an SMS Verification Check response from the Twilio Verify drive
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $driver = new TwilioVerifyDriver($client);
+    $driver = new TwilioVerifySmsDriver($client);
 
     expect($driver->verifySms(new E164PhoneNumber('+15017122661'), '123456'))->toBeTrue();
 });
@@ -77,7 +78,7 @@ it('can retrieve an Email Verification response from the Twilio Verify driver', 
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $driver = new TwilioVerifyDriver($client);
+    $driver = new TwilioVerifyEmailDriver($client);
 
     $status = $driver->sendEmail(new EmailAddress('test@example.org'));
 
@@ -106,7 +107,7 @@ it('can retrieve an Email Verification Check response from the Twilio Verify dri
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $driver = new TwilioVerifyDriver($client);
+    $driver = new TwilioVerifyEmailDriver($client);
 
     expect($driver->verifyEmail(new EmailAddress('test@example.org'), '123456'))->toBeTrue();
 });

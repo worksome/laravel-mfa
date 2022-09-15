@@ -6,24 +6,26 @@ namespace Worksome\MultiFactorAuth\Managers;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Manager;
-use Worksome\MultiFactorAuth\Drivers\NullDriver;
-use Worksome\MultiFactorAuth\Drivers\TwilioVerifyDriver;
+use Worksome\MultiFactorAuth\Drivers\Email\NullEmailDriver;
+use Worksome\MultiFactorAuth\Drivers\Email\TwilioVerifyEmailDriver;
+use Worksome\MultiFactorAuth\Drivers\Sms\TwilioVerifySmsDriver;
+use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
-final class MultiFactorManager extends Manager
+final class MultiFactorEmailManager extends Manager
 {
     public function getDefaultDriver(): string
     {
         // @phpstan-ignore-next-line
-        return $this->config->get('mfa.default') ?? 'null';
+        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::EMAIL->value), 'null');
     }
 
-    public function createNullDriver(): NullDriver
+    public function createNullDriver(): NullEmailDriver
     {
-        return new NullDriver();
+        return new NullEmailDriver();
     }
 
-    public function createTwilioVerifyDriver(): TwilioVerifyDriver
+    public function createTwilioVerifyDriver(): TwilioVerifyEmailDriver
     {
         /** @var array{account_id: string, token: string, service_id: string|null} $options */
         $options = $this->config->get('mfa.services.twilio_verify');
@@ -31,7 +33,7 @@ final class MultiFactorManager extends Manager
         /** @var Factory $factory */
         $factory = $this->container->make(Factory::class);
 
-        return new TwilioVerifyDriver(
+        return new TwilioVerifyEmailDriver(
             new Client(
                 $factory,
                 $options['account_id'],
