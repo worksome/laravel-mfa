@@ -23,7 +23,7 @@ use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableExcepti
  * @property EmailAddress|E164PhoneNumber $to
  * @property Channel $channel
  * @property Status $status
- * @property Carbon $verified_at
+ * @property Carbon|null $verified_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
