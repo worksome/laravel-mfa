@@ -7,7 +7,7 @@ namespace Worksome\MultiFactorAuth\Contracts\Channels;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 
-interface SupportsSms
+interface SupportsSms extends ChannelDriver
 {
     public function sendSms(E164PhoneNumber $to): CreationResponse;
 

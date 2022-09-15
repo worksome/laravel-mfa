@@ -5,35 +5,54 @@ declare(strict_types=1);
 namespace Worksome\MultiFactorAuth;
 
 use Illuminate\Support\Traits\ForwardsCalls;
-use Worksome\MultiFactorAuth\Contracts\Driver;
-use Worksome\MultiFactorAuth\Managers\MultiFactorManager;
+use Worksome\MultiFactorAuth\Contracts\Channels\ChannelDriver;
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
+use Worksome\MultiFactorAuth\Enums\Channel;
+use Worksome\MultiFactorAuth\Managers\MultiFactorEmailManager;
+use Worksome\MultiFactorAuth\Managers\MultiFactorSmsManager;
 
-/** @mixin Driver */
+/**
+ * @method SupportsEmail email()
+ * @method SupportsSms sms()
+ */
 class MultiFactorAuth
 {
     use ForwardsCalls;
 
-    private Driver|null $driver = null;
+    /** @var array<string, ChannelDriver> $drivers */
+    private array $drivers = [];
 
-    public function __construct(private readonly MultiFactorManager $multiFactorManager)
-    {
+    public function __construct(
+        private readonly MultiFactorSmsManager $smsManager,
+        private readonly MultiFactorEmailManager $emailManager
+    ) {
     }
 
-    public function usingDriver(Driver|null $driver): self
+    public function usingDriver(Channel $channel, ChannelDriver|null $driver): self
     {
-        $this->driver = $driver;
+        if ($driver === null) {
+            unset($this->drivers[$channel->value]);
+
+            return $this;
+        }
+
+        $this->drivers[$channel->value] = $driver;
 
         return $this;
     }
 
-    private function driver(): Driver
+    private function driver(Channel $channel): ChannelDriver
     {
         // @phpstan-ignore-next-line
-        return $this->driver ?? $this->multiFactorManager->driver();
+        return $this->drivers[$channel->value] ?? match ($channel) {
+            Channel::EMAIL => $this->emailManager->driver(),
+            Channel::SMS => $this->smsManager->driver(),
+        };
     }
 
-    public function __call(string $name, array $arguments): mixed
+    public function __call(string $name, array $arguments): ChannelDriver
     {
-        return $this->forwardCallTo($this->driver(), $name, $arguments);
+        return $this->driver(Channel::from($name));
     }
 }

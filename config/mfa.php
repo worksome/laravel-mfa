@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Worksome\MultiFactorAuth\Enums\Channel;
+
 return [
 
     /**
@@ -11,15 +13,28 @@ return [
     'user' => \App\Models\User::class,
 
     /**
-     * Go ahead and select a default exchange driver to be used when
-     * generating multifactor authentication.
+     * The drivers that should be used for each channel.
      *
-     * Supported: 'null', 'twilio_verify'
+     * @see \Worksome\MultiFactorAuth\Enums\Channel for the available channels.
      */
 
-    'default' => env('MFA_DRIVER', 'null'),
+    'channels' => [
 
-    'services' => [
+        Channel::EMAIL->value => [
+            'driver' => env('MFA_EMAIL_DRIVER', 'null'),
+        ],
+
+        Channel::SMS->value => [
+            'driver' => env('MFA_SMS_DRIVER', 'null'),
+        ],
+
+    ],
+
+    /**
+     * The drivers that are available to use, and their configurations.
+     */
+
+    'drivers' => [
 
         'twilio_verify' => [
             'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),

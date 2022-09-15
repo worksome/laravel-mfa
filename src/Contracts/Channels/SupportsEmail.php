@@ -7,7 +7,7 @@ namespace Worksome\MultiFactorAuth\Contracts\Channels;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 
-interface SupportsEmail
+interface SupportsEmail extends ChannelDriver
 {
     public function sendEmail(EmailAddress $to): CreationResponse;
 

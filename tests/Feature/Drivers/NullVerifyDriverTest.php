@@ -5,11 +5,12 @@ declare(strict_types=1);
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
-use Worksome\MultiFactorAuth\Drivers\NullDriver;
+use Worksome\MultiFactorAuth\Drivers\Email\NullEmailDriver;
+use Worksome\MultiFactorAuth\Drivers\Sms\NullSmsDriver;
 use Worksome\MultiFactorAuth\Enums\Status;
 
 it('can send SMS from the Null driver', function () {
-    $driver = NullDriver::make()
+    $driver = NullSmsDriver::make()
         ->withSmsStatus(Status::PENDING)
         ->withSmsVerified();
 
@@ -22,7 +23,7 @@ it('can send SMS from the Null driver', function () {
 });
 
 it('can verify SMS from the Null driver', function () {
-    $driver = NullDriver::make()
+    $driver = NullSmsDriver::make()
         ->withSmsStatus(Status::PENDING)
         ->withSmsVerified(false);
 
@@ -42,7 +43,7 @@ it('can verify SMS from the Null driver', function () {
 });
 
 it('can send Email from the Null driver', function () {
-    $driver = NullDriver::make()
+    $driver = NullEmailDriver::make()
         ->withEmailStatus(Status::PENDING)
         ->withEmailVerified();
 
@@ -55,7 +56,7 @@ it('can send Email from the Null driver', function () {
 });
 
 it('can verify Email from the Null driver', function () {
-    $driver = NullDriver::make()
+    $driver = NullEmailDriver::make()
         ->withEmailStatus(Status::PENDING)
         ->withEmailVerified(false);
 
