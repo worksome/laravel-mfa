@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('to');
             $table->string('channel');
             $table->string('status');
-            $table->boolean('is_valid')->default(false);
+            $table->timestamp('verified_at')->nullable();
 
             $table->timestamps();
 
