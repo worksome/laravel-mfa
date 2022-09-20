@@ -10,7 +10,7 @@ use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 
 abstract class AbstractEmailDriver implements SupportsEmail
 {
-    abstract public function send(Identifier $to): CreationResponse;
+    abstract public function make(Identifier $to): CreationResponse;
 
     abstract public function verify(Identifier $to, string $code): bool;
 }

@@ -19,7 +19,7 @@ class NullEmailDriver extends AbstractEmailDriver
         return new self();
     }
 
-    public function send(Identifier $to): CreationResponse
+    public function make(Identifier $to): CreationResponse
     {
         return new CreationResponse($this->emailStatus ?? Status::PENDING);
     }

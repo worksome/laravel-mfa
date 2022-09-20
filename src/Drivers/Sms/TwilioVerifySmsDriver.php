@@ -17,7 +17,7 @@ class TwilioVerifySmsDriver extends AbstractSmsDriver
     {
     }
 
-    public function send(Identifier $to): CreationResponse
+    public function make(Identifier $to): CreationResponse
     {
         $data = $this->client->sendVerification($to->data, Channel::Sms);
 

@@ -15,7 +15,7 @@ interface ChannelDriver
     /**
      * @param TIdentifier $to
      */
-    public function send(Identifier $to): CreationResponse;
+    public function make(Identifier $to): CreationResponse;
 
     /**
      * @param TIdentifier $to

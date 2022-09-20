@@ -14,7 +14,7 @@ it('can send SMS from the Null driver', function () {
         ->withSmsStatus(Status::PENDING)
         ->withSmsVerified();
 
-    $status = $driver->send(
+    $status = $driver->make(
         new E164PhoneNumber('+14155552671'),
     );
 
@@ -47,7 +47,7 @@ it('can send Email from the Null driver', function () {
         ->withEmailStatus(Status::PENDING)
         ->withEmailVerified();
 
-    $status = $driver->send(
+    $status = $driver->make(
         new EmailAddress('test@example.org'),
     );
 

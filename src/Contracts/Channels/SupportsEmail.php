@@ -13,7 +13,7 @@ use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
  */
 interface SupportsEmail extends ChannelDriver
 {
-    public function send(Identifier $to): CreationResponse;
+    public function make(Identifier $to): CreationResponse;
 
     public function verify(Identifier $to, string $code): bool;
 }

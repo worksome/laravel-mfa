@@ -65,7 +65,7 @@ return [
 
 ```php
 $twoFactorAuth = new \Worksome\MultiFactorAuth\MultiFactorAuth();
-$response = $twoFactorAuth->sendSms(
+$response = $twoFactorAuth->sms->make(
     new \Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber('+14155552671'),
 );
 
