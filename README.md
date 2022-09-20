@@ -33,22 +33,21 @@ This is the contents of the published config file:
 ```php
 return [
 
-    /**
-     * The user model to support multifactor authentication.
-     */
-
     'user' => \App\Models\User::class,
 
-    /**
-     * Go ahead and select a default exchange driver to be used when
-     * generating multifactor authentication.
-     *
-     * Supported: 'null', 'twilio_verify'
-     */
+    'channels' => [
 
-    'default' => env('MFA_DRIVER', 'null'),
+        \Worksome\MultiFactorAuth\Enums\Channel::Email->value => [
+            'driver' => env('MFA_EMAIL_DRIVER', 'null'),
+        ],
 
-    'services' => [
+        \Worksome\MultiFactorAuth\Enums\Channel::Sms->value => [
+            'driver' => env('MFA_SMS_DRIVER', 'null'),
+        ],
+
+    ],
+
+    'drivers' => [
 
         'twilio_verify' => [
             'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),
