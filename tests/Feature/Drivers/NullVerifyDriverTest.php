@@ -14,7 +14,7 @@ it('can send SMS from the Null driver', function () {
         ->withSmsStatus(Status::PENDING)
         ->withSmsVerified();
 
-    $status = $driver->sendSms(
+    $status = $driver->send(
         new E164PhoneNumber('+14155552671'),
     );
 
@@ -30,7 +30,7 @@ it('can verify SMS from the Null driver', function () {
     $phoneNumber = new E164PhoneNumber('+14155552671');
 
     expect(
-        $driver->verifySms($phoneNumber, '123456')
+        $driver->verify($phoneNumber, '123456')
     )->toBeFalse();
 
     $driver
@@ -38,7 +38,7 @@ it('can verify SMS from the Null driver', function () {
         ->withSmsVerified();
 
     expect(
-        $driver->verifySms($phoneNumber, '123456')
+        $driver->verify($phoneNumber, '123456')
     )->toBeTrue();
 });
 
@@ -47,7 +47,7 @@ it('can send Email from the Null driver', function () {
         ->withEmailStatus(Status::PENDING)
         ->withEmailVerified();
 
-    $status = $driver->sendEmail(
+    $status = $driver->send(
         new EmailAddress('test@example.org'),
     );
 
@@ -63,7 +63,7 @@ it('can verify Email from the Null driver', function () {
     $emailAddress = new EmailAddress('test@example.org');
 
     expect(
-        $driver->verifyEmail($emailAddress, '123456')
+        $driver->verify($emailAddress, '123456')
     )->toBeFalse();
 
     $driver
@@ -71,6 +71,6 @@ it('can verify Email from the Null driver', function () {
         ->withEmailVerified();
 
     expect(
-        $driver->verifyEmail($emailAddress, '123456')
+        $driver->verify($emailAddress, '123456')
     )->toBeTrue();
 });

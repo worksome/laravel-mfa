@@ -14,7 +14,7 @@ use Worksome\MultiFactorAuth\Facades\MultiFactorAuth;
 it('can create an SMS driver from the facade', function () {
     MultiFactorAuth::usingDriver(Channel::Sms, new NullSmsDriver());
 
-    $response = MultiFactorAuth::sms()->sendSms(new E164PhoneNumber('+15017122661'));
+    $response = MultiFactorAuth::sms()->send(new E164PhoneNumber('+15017122661'));
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)
@@ -24,7 +24,7 @@ it('can create an SMS driver from the facade', function () {
 it('can create an email driver from the facade', function () {
     MultiFactorAuth::usingDriver(Channel::Email, new NullEmailDriver());
 
-    $response = MultiFactorAuth::email()->sendEmail(new EmailAddress('test@example.org'));
+    $response = MultiFactorAuth::email()->send(new EmailAddress('test@example.org'));
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)

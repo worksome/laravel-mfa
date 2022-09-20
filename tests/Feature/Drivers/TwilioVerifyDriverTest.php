@@ -30,7 +30,7 @@ it('can retrieve an SMS Verification response from the Twilio Verify driver', fu
 
     $driver = new TwilioVerifySmsDriver($client);
 
-    $status = $driver->sendSms(new E164PhoneNumber('+15017122661'));
+    $status = $driver->send(new E164PhoneNumber('+15017122661'));
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
         ->status->toBe(Status::PENDING)
@@ -59,7 +59,7 @@ it('can retrieve an SMS Verification Check response from the Twilio Verify drive
 
     $driver = new TwilioVerifySmsDriver($client);
 
-    expect($driver->verifySms(new E164PhoneNumber('+15017122661'), '123456'))->toBeTrue();
+    expect($driver->verify(new E164PhoneNumber('+15017122661'), '123456'))->toBeTrue();
 });
 
 it('can retrieve an Email Verification response from the Twilio Verify driver', function () {
@@ -80,7 +80,7 @@ it('can retrieve an Email Verification response from the Twilio Verify driver', 
 
     $driver = new TwilioVerifyEmailDriver($client);
 
-    $status = $driver->sendEmail(new EmailAddress('test@example.org'));
+    $status = $driver->send(new EmailAddress('test@example.org'));
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
         ->status->toBe(Status::PENDING)
@@ -109,5 +109,5 @@ it('can retrieve an Email Verification Check response from the Twilio Verify dri
 
     $driver = new TwilioVerifyEmailDriver($client);
 
-    expect($driver->verifyEmail(new EmailAddress('test@example.org'), '123456'))->toBeTrue();
+    expect($driver->verify(new EmailAddress('test@example.org'), '123456'))->toBeTrue();
 });
