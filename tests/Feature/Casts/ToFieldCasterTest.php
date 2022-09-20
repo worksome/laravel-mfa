@@ -21,20 +21,20 @@ it('can cast from cents to a number', function (Channel $channel, E164PhoneNumbe
     expect($factor->channel)->toEqual($channel)
         ->and($factor->to)->toEqual($to);
 })->with([
-    [Channel::EMAIL, new EmailAddress('test@example.org')],
-    [Channel::SMS, new E164PhoneNumber('+15017122661')],
+    [Channel::Email, new EmailAddress('test@example.org')],
+    [Channel::Sms, new E164PhoneNumber('+15017122661')],
 ]);
 
 it('throws an exception for invalid E164 Phone Number', function () {
     MultiFactor::query()->create([
-        'channel' => Channel::SMS,
+        'channel' => Channel::Sms,
         'to' => '+15017122661',
     ]);
 })->throws(InvalidArgumentException::class, 'The given value is not an E.164 Phone Number or Email Address instance.');
 
 it('throws an exception for invalid Email Address', function () {
     MultiFactor::query()->create([
-        'channel' => Channel::EMAIL,
+        'channel' => Channel::Email,
         'to' => 'invalid',
     ]);
 })->throws(InvalidArgumentException::class, 'The given value is not an E.164 Phone Number or Email Address instance.');

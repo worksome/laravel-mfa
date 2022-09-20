@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\DataValues\Email;
 
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\Exceptions\Email\InvalidEmailAddressException;
 
 /** @link https://datatracker.ietf.org/doc/html/rfc5322 */
-class EmailAddress
+class EmailAddress extends Identifier
 {
     public function __construct(public readonly string $data)
     {

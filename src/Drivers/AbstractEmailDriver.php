@@ -6,11 +6,12 @@ namespace Worksome\MultiFactorAuth\Drivers;
 
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 
 abstract class AbstractEmailDriver implements SupportsEmail
 {
-    abstract public function sendEmail(EmailAddress $to): CreationResponse;
+    abstract public function send(Identifier $to): CreationResponse;
 
-    abstract public function verifyEmail(EmailAddress $to, string $code): bool;
+    abstract public function verify(Identifier $to, string $code): bool;
 }

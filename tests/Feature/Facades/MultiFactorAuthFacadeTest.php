@@ -12,7 +12,7 @@ use Worksome\MultiFactorAuth\Enums\Status;
 use Worksome\MultiFactorAuth\Facades\MultiFactorAuth;
 
 it('can create an SMS driver from the facade', function () {
-    MultiFactorAuth::usingDriver(Channel::SMS, new NullSmsDriver());
+    MultiFactorAuth::usingDriver(Channel::Sms, new NullSmsDriver());
 
     $response = MultiFactorAuth::sms()->sendSms(new E164PhoneNumber('+15017122661'));
 
@@ -22,7 +22,7 @@ it('can create an SMS driver from the facade', function () {
 });
 
 it('can create an email driver from the facade', function () {
-    MultiFactorAuth::usingDriver(Channel::EMAIL, new NullEmailDriver());
+    MultiFactorAuth::usingDriver(Channel::Email, new NullEmailDriver());
 
     $response = MultiFactorAuth::email()->sendEmail(new EmailAddress('test@example.org'));
 

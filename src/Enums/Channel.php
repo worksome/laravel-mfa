@@ -6,6 +6,6 @@ namespace Worksome\MultiFactorAuth\Enums;
 
 enum Channel: string
 {
-    case EMAIL = 'email';
-    case SMS = 'sms';
+    case Email = 'email';
+    case Sms = 'sms';
 }

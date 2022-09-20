@@ -25,12 +25,12 @@ it('can retrieve an SMS response from the Twilio Verify API', function () {
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $response = $client->sendVerification('+15017122661', Channel::SMS);
+    $response = $client->sendVerification('+15017122661', Channel::Sms);
 
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('+15017122661')
-        ->channel->toBe(Channel::SMS->value);
+        ->channel->toBe(Channel::Sms->value);
 });
 
 it('can retrieve an SMS response from the Twilio Verify API check', function () {
@@ -54,7 +54,7 @@ it('can retrieve an SMS response from the Twilio Verify API check', function () 
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('+15017122661')
-        ->channel->toBe(Channel::SMS->value)
+        ->channel->toBe(Channel::Sms->value)
         ->status->toBe(Status::APPROVED->value);
 });
 
@@ -74,12 +74,12 @@ it('can retrieve an Email response from the Twilio Verify API', function () {
         'VAXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
     );
 
-    $response = $client->sendVerification('test@example.org', Channel::EMAIL);
+    $response = $client->sendVerification('test@example.org', Channel::Email);
 
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('test@example.org')
-        ->channel->toBe(Channel::EMAIL->value);
+        ->channel->toBe(Channel::Email->value);
 });
 
 it('can retrieve an Email response from the Twilio Verify API check', function () {
@@ -103,7 +103,7 @@ it('can retrieve an Email response from the Twilio Verify API check', function (
     expect($response)->toBeArray()
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('test@example.org')
-        ->channel->toBe(Channel::EMAIL->value)
+        ->channel->toBe(Channel::Email->value)
         ->status->toBe(Status::APPROVED->value);
 });
 
@@ -116,7 +116,7 @@ it('throws an exception when no service id is provided', function () {
         'aaaabbbbccccddddeeeeffff1111'
     );
 
-    $client->sendVerification('+15017122661', Channel::SMS);
+    $client->sendVerification('+15017122661', Channel::Sms);
 })->throws(
     InvalidValueException::class,
     'A valid service token is required for this Twilio Verify request, none provided.'

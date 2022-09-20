@@ -6,18 +6,22 @@ namespace Worksome\MultiFactorAuth\Managers;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Manager;
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\Drivers\Email\NullEmailDriver;
 use Worksome\MultiFactorAuth\Drivers\Email\TwilioVerifyEmailDriver;
 use Worksome\MultiFactorAuth\Drivers\Sms\TwilioVerifySmsDriver;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
+/**
+ * @method SupportsEmail driver(string|null $driver = null)
+ */
 final class MultiFactorEmailManager extends Manager
 {
     public function getDefaultDriver(): string
     {
         // @phpstan-ignore-next-line
-        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::EMAIL->value), 'null');
+        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::Email->value), 'null');
     }
 
     public function createNullDriver(): NullEmailDriver

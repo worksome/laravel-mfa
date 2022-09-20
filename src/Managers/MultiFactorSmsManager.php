@@ -6,17 +6,21 @@ namespace Worksome\MultiFactorAuth\Managers;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Support\Manager;
+use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
 use Worksome\MultiFactorAuth\Drivers\Sms\NullSmsDriver;
 use Worksome\MultiFactorAuth\Drivers\Sms\TwilioVerifySmsDriver;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 
+/**
+ * @method SupportsSms driver(string|null $driver = null)
+ */
 final class MultiFactorSmsManager extends Manager
 {
     public function getDefaultDriver(): string
     {
         // @phpstan-ignore-next-line
-        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::SMS->value), 'null');
+        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::Sms->value), 'null');
     }
 
     public function createNullDriver(): NullSmsDriver

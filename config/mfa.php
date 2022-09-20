@@ -20,11 +20,11 @@ return [
 
     'channels' => [
 
-        Channel::EMAIL->value => [
+        Channel::Email->value => [
             'driver' => env('MFA_EMAIL_DRIVER', 'null'),
         ],
 
-        Channel::SMS->value => [
+        Channel::Sms->value => [
             'driver' => env('MFA_SMS_DRIVER', 'null'),
         ],
 

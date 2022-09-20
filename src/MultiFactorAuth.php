@@ -7,6 +7,8 @@ namespace Worksome\MultiFactorAuth;
 use Worksome\MultiFactorAuth\Contracts\Channels\ChannelDriver;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
+use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Managers\MultiFactorEmailManager;
 use Worksome\MultiFactorAuth\Managers\MultiFactorSmsManager;
@@ -17,7 +19,7 @@ use Worksome\MultiFactorAuth\Managers\MultiFactorSmsManager;
  */
 class MultiFactorAuth
 {
-    /** @var array<string, ChannelDriver> $drivers */
+    /** @var array<string, ChannelDriver<E164PhoneNumber>|ChannelDriver<EmailAddress>> $drivers */
     private array $drivers = [];
 
     public function __construct(
@@ -26,6 +28,9 @@ class MultiFactorAuth
     ) {
     }
 
+    /**
+     * @param  ChannelDriver<E164PhoneNumber>|ChannelDriver<EmailAddress>  $driver
+     */
     public function usingDriver(Channel $channel, ChannelDriver|null $driver): self
     {
         if ($driver === null) {
@@ -39,15 +44,21 @@ class MultiFactorAuth
         return $this;
     }
 
-    private function driver(Channel $channel): ChannelDriver
+    /**
+     * @param  Channel  $channel
+     * @return ($channel is Channel::Email ? ChannelDriver<EmailAddress> : ChannelDriver<E164PhoneNumber>)
+     */
+    public function driver(Channel $channel): ChannelDriver
     {
-        // @phpstan-ignore-next-line
         return $this->drivers[$channel->value] ?? match ($channel) {
-            Channel::EMAIL => $this->emailManager->driver(),
-            Channel::SMS => $this->smsManager->driver(),
+            Channel::Email => $this->emailManager->driver(),
+            Channel::Sms => $this->smsManager->driver(),
         };
     }
 
+    /**
+     * @return ChannelDriver<E164PhoneNumber>|ChannelDriver<EmailAddress>
+     */
     public function __call(string $name, array $arguments): ChannelDriver
     {
         return $this->driver(Channel::from($name));

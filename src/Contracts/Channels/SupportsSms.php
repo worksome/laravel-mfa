@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Contracts\Channels;
 
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 
+/**
+ * @extends ChannelDriver<E164PhoneNumber>
+ */
 interface SupportsSms extends ChannelDriver
 {
-    public function sendSms(E164PhoneNumber $to): CreationResponse;
+    public function send(Identifier $to): CreationResponse;
 
-    public function verifySms(E164PhoneNumber $to, string $code): bool;
+    public function verify(Identifier $to, string $code): bool;
 }

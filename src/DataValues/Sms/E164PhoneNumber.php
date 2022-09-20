@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\DataValues\Sms;
 
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\Exceptions\Sms\InvalidPhoneNumberException;
 
 /** @link https://itu.int/rec/T-REC-E.164 */
-class E164PhoneNumber
+class E164PhoneNumber extends Identifier
 {
     public function __construct(public readonly string $data)
     {

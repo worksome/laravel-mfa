@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Worksome\MultiFactorAuth\Drivers\Email;
 
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractEmailDriver;
 use Worksome\MultiFactorAuth\Drivers\Concerns\CanFakeEmailVerification;
@@ -19,12 +20,12 @@ class NullEmailDriver extends AbstractEmailDriver
         return new self();
     }
 
-    public function sendEmail(EmailAddress $to): CreationResponse
+    public function send(Identifier $to): CreationResponse
     {
         return new CreationResponse($this->emailStatus ?? Status::PENDING);
     }
 
-    public function verifyEmail(EmailAddress $to, string $code): bool
+    public function verify(Identifier $to, string $code): bool
     {
         return $this->emailVerified ?? true;
     }

@@ -22,8 +22,8 @@ class ToFieldCaster implements CastsAttributes
         }
 
         return match($model->channel) {
-            Channel::EMAIL => new EmailAddress($value),
-            Channel::SMS => new E164PhoneNumber($value),
+            Channel::Email => new EmailAddress($value),
+            Channel::Sms => new E164PhoneNumber($value),
         };
     }
 

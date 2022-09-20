@@ -36,7 +36,7 @@ it('can retrieve an SMS Verification response from the Twilio Verify driver', fu
         ->status->toBe(Status::PENDING)
         ->data->toBeArray()
         ->data->to->toBe('+15017122661')
-        ->data->channel->toBe(Channel::SMS->value)
+        ->data->channel->toBe(Channel::Sms->value)
         ->data->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->data->status->toBe(Status::PENDING->value);
 });
@@ -86,7 +86,7 @@ it('can retrieve an Email Verification response from the Twilio Verify driver', 
         ->status->toBe(Status::PENDING)
         ->data->toBeArray()
         ->data->to->toBe('test@example.org')
-        ->data->channel->toBe(Channel::EMAIL->value)
+        ->data->channel->toBe(Channel::Email->value)
         ->data->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->data->status->toBe(Status::PENDING->value);
 });

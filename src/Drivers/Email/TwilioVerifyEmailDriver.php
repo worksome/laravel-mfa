@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Drivers\Email;
 
-use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractEmailDriver;
 use Worksome\MultiFactorAuth\Enums\Channel;
@@ -17,9 +17,9 @@ class TwilioVerifyEmailDriver extends AbstractEmailDriver
     {
     }
 
-    public function sendEmail(EmailAddress $to): CreationResponse
+    public function send(Identifier $to): CreationResponse
     {
-        $data = $this->client->sendVerification($to->data, Channel::EMAIL);
+        $data = $this->client->sendVerification($to->data, Channel::Email);
 
         assert(isset($data['status']));
 
@@ -29,7 +29,7 @@ class TwilioVerifyEmailDriver extends AbstractEmailDriver
         );
     }
 
-    public function verifyEmail(EmailAddress $to, string $code): bool
+    public function verify(Identifier $to, string $code): bool
     {
         $data = $this->client->sendVerificationCheck($to->data, $code);
 
