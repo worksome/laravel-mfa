@@ -9,7 +9,6 @@ use Illuminate\Support\Manager;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsEmail;
 use Worksome\MultiFactorAuth\Drivers\Email\NullEmailDriver;
 use Worksome\MultiFactorAuth\Drivers\Email\TwilioVerifyEmailDriver;
-use Worksome\MultiFactorAuth\Drivers\Sms\TwilioVerifySmsDriver;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Services\TwilioVerify\Client;
 

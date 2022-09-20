@@ -15,7 +15,7 @@ use Worksome\MultiFactorAuth\Managers\MultiFactorSmsManager;
 
 /**
  * @method SupportsEmail email()
- * @method SupportsSms sms()
+ * @method SupportsSms   sms()
  */
 class MultiFactorAuth
 {
@@ -24,12 +24,12 @@ class MultiFactorAuth
 
     public function __construct(
         private readonly MultiFactorSmsManager $smsManager,
-        private readonly MultiFactorEmailManager $emailManager
+        private readonly MultiFactorEmailManager $emailManager,
     ) {
     }
 
     /**
-     * @param  ChannelDriver<E164PhoneNumber>|ChannelDriver<EmailAddress>  $driver
+     * @param ChannelDriver<E164PhoneNumber>|ChannelDriver<EmailAddress> $driver
      */
     public function usingDriver(Channel $channel, ChannelDriver|null $driver): self
     {
@@ -45,7 +45,8 @@ class MultiFactorAuth
     }
 
     /**
-     * @param  Channel  $channel
+     * @param Channel $channel
+     *
      * @return ($channel is Channel::Email ? ChannelDriver<EmailAddress> : ChannelDriver<E164PhoneNumber>)
      */
     public function driver(Channel $channel): ChannelDriver

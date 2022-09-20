@@ -21,7 +21,7 @@ class ToFieldCaster implements CastsAttributes
             throw new InvalidValueException('The given value is not a valid email address or E.164 phone number string.');
         }
 
-        return match($model->channel) {
+        return match ($model->channel) {
             Channel::Email => new EmailAddress($value),
             Channel::Sms => new E164PhoneNumber($value),
         };

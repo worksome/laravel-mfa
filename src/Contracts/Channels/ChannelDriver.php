@@ -13,11 +13,12 @@ use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 interface ChannelDriver
 {
     /**
-     * @param  TIdentifier  $to
+     * @param TIdentifier $to
      */
     public function send(Identifier $to): CreationResponse;
+
     /**
-     * @param  TIdentifier  $to
+     * @param TIdentifier $to
      */
     public function verify(Identifier $to, string $code): bool;
 }

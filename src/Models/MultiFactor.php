@@ -17,16 +17,15 @@ use Worksome\MultiFactorAuth\Enums\Status;
 use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableException;
 
 /**
- * @property int $id
- * @property int $user_id
- * @property string $name
- * @property EmailAddress|E164PhoneNumber $to
- * @property Channel $channel
- * @property Status $status
- * @property Carbon|null $verified_at
- * @property Carbon $created_at
- * @property Carbon $updated_at
- *
+ * @property int                              $id
+ * @property int                              $user_id
+ * @property string                           $name
+ * @property EmailAddress|E164PhoneNumber     $to
+ * @property Channel                          $channel
+ * @property Status                           $status
+ * @property Carbon|null                      $verified_at
+ * @property Carbon                           $created_at
+ * @property Carbon                           $updated_at
  * @property MultiFactorAuthenticatable&Model $user
  */
 class MultiFactor extends Model
@@ -53,7 +52,7 @@ class MultiFactor extends Model
         }
 
         if (! Arr::exists((array) class_implements($userModel), MultiFactorAuthenticatable::class)) {
-            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '".MultiFactorAuthenticatable::class."'.");
+            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'.");
         }
 
         return $this->belongsTo($userModel);

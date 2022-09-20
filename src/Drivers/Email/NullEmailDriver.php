@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Drivers\Email;
 
-use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractEmailDriver;

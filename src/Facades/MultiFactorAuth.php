@@ -10,6 +10,7 @@ use Worksome\MultiFactorAuth\Contracts\Channels\SupportsSms;
 /**
  * @see SupportsSms
  * @see SupportsSms
+ *
  * @mixin \Worksome\MultiFactorAuth\MultiFactorAuth
  */
 class MultiFactorAuth extends Facade
