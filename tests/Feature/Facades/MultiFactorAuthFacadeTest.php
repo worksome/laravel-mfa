@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use Worksome\MultiFactorAuth\DataValues\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
-use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\Email\NullEmailDriver;
 use Worksome\MultiFactorAuth\Drivers\Sms\NullSmsDriver;
 use Worksome\MultiFactorAuth\Drivers\Totp\NullTotpDriver;

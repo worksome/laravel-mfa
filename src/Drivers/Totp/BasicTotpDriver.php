@@ -6,8 +6,8 @@ namespace Worksome\MultiFactorAuth\Drivers\Totp;
 
 use Illuminate\Cache\Repository as CacheRepository;
 use PragmaRX\Google2FA\Google2FA;
+use Worksome\MultiFactorAuth\DataValues\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\Identifier;
-use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractTotpDriver;
 use Worksome\MultiFactorAuth\Enums\Status;
 

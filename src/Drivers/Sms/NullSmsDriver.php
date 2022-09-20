@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Drivers\Sms;
 
+use Worksome\MultiFactorAuth\DataValues\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\Identifier;
-use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractSmsDriver;
 use Worksome\MultiFactorAuth\Drivers\Concerns\CanFake;
 use Worksome\MultiFactorAuth\Enums\Status;

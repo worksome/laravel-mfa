@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\DataValues\TwilioVerify;
+namespace Worksome\MultiFactorAuth\DataValues;
 
 use Worksome\MultiFactorAuth\Enums\Status;
 

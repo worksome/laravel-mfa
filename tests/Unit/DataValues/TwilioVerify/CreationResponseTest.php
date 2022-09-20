@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
+use Worksome\MultiFactorAuth\DataValues\CreationResponse;
 use Worksome\MultiFactorAuth\Enums\Status;
 
 it('can create a valid creation response', function (Status $status, array $data) {
