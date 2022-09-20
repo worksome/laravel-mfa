@@ -10,9 +10,9 @@ use Worksome\MultiFactorAuth\Drivers\Sms\NullSmsDriver;
 use Worksome\MultiFactorAuth\Enums\Status;
 
 it('can send SMS from the Null driver', function () {
-    $driver = NullSmsDriver::make()
-        ->withSmsStatus(Status::PENDING)
-        ->withSmsVerified();
+    $driver = (new NullSmsDriver())
+        ->fakeStatus(Status::PENDING)
+        ->fakeVerified();
 
     $status = $driver->make(
         new E164PhoneNumber('+14155552671'),
@@ -23,9 +23,9 @@ it('can send SMS from the Null driver', function () {
 });
 
 it('can verify SMS from the Null driver', function () {
-    $driver = NullSmsDriver::make()
-        ->withSmsStatus(Status::PENDING)
-        ->withSmsVerified(false);
+    $driver = (new NullSmsDriver())
+        ->fakeStatus(Status::PENDING)
+        ->fakeVerified(false);
 
     $phoneNumber = new E164PhoneNumber('+14155552671');
 
@@ -34,8 +34,8 @@ it('can verify SMS from the Null driver', function () {
     )->toBeFalse();
 
     $driver
-        ->withSmsStatus(Status::APPROVED)
-        ->withSmsVerified();
+        ->fakeStatus(Status::APPROVED)
+        ->fakeVerified();
 
     expect(
         $driver->verify($phoneNumber, '123456')
@@ -43,9 +43,9 @@ it('can verify SMS from the Null driver', function () {
 });
 
 it('can send Email from the Null driver', function () {
-    $driver = NullEmailDriver::make()
-        ->withEmailStatus(Status::PENDING)
-        ->withEmailVerified();
+    $driver = (new NullEmailDriver())
+        ->fakeStatus(Status::PENDING)
+        ->fakeVerified();
 
     $status = $driver->make(
         new EmailAddress('test@example.org'),
@@ -56,9 +56,9 @@ it('can send Email from the Null driver', function () {
 });
 
 it('can verify Email from the Null driver', function () {
-    $driver = NullEmailDriver::make()
-        ->withEmailStatus(Status::PENDING)
-        ->withEmailVerified(false);
+    $driver = (new NullEmailDriver())
+        ->fakeStatus(Status::PENDING)
+        ->fakeVerified(false);
 
     $emailAddress = new EmailAddress('test@example.org');
 
@@ -67,8 +67,8 @@ it('can verify Email from the Null driver', function () {
     )->toBeFalse();
 
     $driver
-        ->withEmailStatus(Status::APPROVED)
-        ->withEmailVerified();
+        ->fakeStatus(Status::APPROVED)
+        ->fakeVerified();
 
     expect(
         $driver->verify($emailAddress, '123456')

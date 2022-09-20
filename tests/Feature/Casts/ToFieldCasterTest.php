@@ -30,11 +30,18 @@ it('throws an exception for invalid E164 Phone Number', function () {
         'channel' => Channel::Sms,
         'to' => '+15017122661',
     ]);
-})->throws(InvalidArgumentException::class, 'The given value is not an E.164 Phone Number or Email Address instance.');
+})->throws(InvalidArgumentException::class, 'The given value is not a valid multi-factor identifier instance.');
 
 it('throws an exception for invalid Email Address', function () {
     MultiFactor::query()->create([
         'channel' => Channel::Email,
         'to' => 'invalid',
     ]);
-})->throws(InvalidArgumentException::class, 'The given value is not an E.164 Phone Number or Email Address instance.');
+})->throws(InvalidArgumentException::class, 'The given value is not a valid multi-factor identifier instance.');
+
+it('throws an exception for invalid TOTP secret', function () {
+    MultiFactor::query()->create([
+        'channel' => Channel::Totp,
+        'to' => '',
+    ]);
+})->throws(InvalidArgumentException::class, 'The given value is not a valid multi-factor identifier instance.');

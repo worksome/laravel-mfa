@@ -8,4 +8,5 @@ enum Channel: string
 {
     case Email = 'email';
     case Sms = 'sms';
+    case Totp = 'totp';
 }

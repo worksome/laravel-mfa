@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Worksome\MultiFactorAuth\Drivers\Sms;
+namespace Worksome\MultiFactorAuth\Drivers\Totp;
 
 use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
@@ -10,13 +10,19 @@ use Worksome\MultiFactorAuth\Drivers\AbstractSmsDriver;
 use Worksome\MultiFactorAuth\Drivers\Concerns\CanFake;
 use Worksome\MultiFactorAuth\Enums\Status;
 
-class NullSmsDriver extends AbstractSmsDriver
+class NullTotpDriver extends AbstractSmsDriver
 {
     use CanFake;
 
+    public function __construct()
+    {
+    }
+
     public function make(Identifier $to): CreationResponse
     {
-        return new CreationResponse($this->status ?? Status::PENDING);
+        return new CreationResponse($this->status ?? Status::PENDING, [
+            'secret' => 'TEST',
+        ]);
     }
 
     public function verify(Identifier $to, string $code): bool

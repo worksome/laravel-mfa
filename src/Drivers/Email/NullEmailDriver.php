@@ -7,25 +7,20 @@ namespace Worksome\MultiFactorAuth\Drivers\Email;
 use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\TwilioVerify\CreationResponse;
 use Worksome\MultiFactorAuth\Drivers\AbstractEmailDriver;
-use Worksome\MultiFactorAuth\Drivers\Concerns\CanFakeEmailVerification;
+use Worksome\MultiFactorAuth\Drivers\Concerns\CanFake;
 use Worksome\MultiFactorAuth\Enums\Status;
 
 class NullEmailDriver extends AbstractEmailDriver
 {
-    use CanFakeEmailVerification;
-
-    public static function make(): self
-    {
-        return new self();
-    }
+    use CanFake;
 
     public function make(Identifier $to): CreationResponse
     {
-        return new CreationResponse($this->emailStatus ?? Status::PENDING);
+        return new CreationResponse($this->status ?? Status::PENDING);
     }
 
     public function verify(Identifier $to, string $code): bool
     {
-        return $this->emailVerified ?? true;
+        return $this->verified ?? true;
     }
 }
