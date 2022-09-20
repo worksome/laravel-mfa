@@ -30,7 +30,6 @@ return [
 
         Channel::Totp->value => [
             'driver' => env('MFA_TOTP_DRIVER', 'null'),
-            'provider_name' => env('MFA_TOTP_PROVIDER_NAME', env('APP_NAME')),
         ],
 
     ],
