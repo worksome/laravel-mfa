@@ -12,21 +12,22 @@ use Worksome\MultiFactorAuth\Casts\ToFieldCaster;
 use Worksome\MultiFactorAuth\Contracts\MultiFactorAuthenticatable;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
+use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Enums\Status;
 use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableException;
 
 /**
- * @property int                              $id
- * @property int                              $user_id
- * @property string                           $name
- * @property EmailAddress|E164PhoneNumber     $to
- * @property Channel                          $channel
- * @property Status                           $status
- * @property Carbon|null                      $verified_at
- * @property Carbon                           $created_at
- * @property Carbon                           $updated_at
- * @property MultiFactorAuthenticatable&Model $user
+ * @property int                                     $id
+ * @property int                                     $user_id
+ * @property string                                  $name
+ * @property EmailAddress|E164PhoneNumber|TotpSecret $to
+ * @property Channel                                 $channel
+ * @property Status                                  $status
+ * @property Carbon|null                             $verified_at
+ * @property Carbon                                  $created_at
+ * @property Carbon                                  $updated_at
+ * @property MultiFactorAuthenticatable&Model        $user
  */
 class MultiFactor extends Model
 {
