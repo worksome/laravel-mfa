@@ -36,7 +36,7 @@ it('can create an email driver from the facade', function () {
 it('can create a TOTP driver from the facade', function () {
     MultiFactorAuth::usingDriver(Channel::Totp, new NullTotpDriver());
 
-    $response = MultiFactorAuth::totp()->make(new TotpSecret('TEST'));
+    $response = MultiFactorAuth::totp()->make(new TotpSecret('TESTSECRET'));
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)

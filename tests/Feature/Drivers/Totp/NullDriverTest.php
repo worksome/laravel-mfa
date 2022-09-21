@@ -13,7 +13,7 @@ it('can make TOTP from the Null driver', function () {
         ->fakeVerified();
 
     $status = $driver->make(
-        new TotpSecret('TEST'),
+        new TotpSecret('TESTSECRET'),
     );
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
@@ -25,7 +25,7 @@ it('can verify TOTP from the Null driver', function () {
         ->fakeStatus(Status::PENDING)
         ->fakeVerified(false);
 
-    $secret = new TotpSecret('TEST');
+    $secret = new TotpSecret('TESTSECRET');
 
     expect(
         $driver->verify($secret, '123456')
