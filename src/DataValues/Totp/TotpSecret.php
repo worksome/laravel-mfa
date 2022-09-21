@@ -11,7 +11,7 @@ class TotpSecret extends Identifier
 {
     public function __construct(public readonly string $data)
     {
-        if ($this->data === '') {
+        if ($this->data === '' || strlen($this->data) < 8) {
             throw new InvalidTotpSecretException(
                 'The provided TOTP secret is not valid.'
             );
