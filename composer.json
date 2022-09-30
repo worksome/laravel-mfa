@@ -45,17 +45,11 @@
         }
     },
     "scripts": {
-        "lint": [
-            "vendor/bin/php-cs-fixer fix --ansi",
-            "vendor/bin/phpcbf"
-        ],
+        "lint": "ecs --fix",
         "test:unit": "vendor/bin/pest -p",
         "test:coverage": "vendor/bin/pest -p --coverage",
         "test:types": "vendor/bin/phpstan analyse",
-        "test:style": [
-            "vendor/bin/php-cs-fixer fix --dry-run --ansi",
-            "vendor/bin/phpcs -n"
-        ],
+        "test:style": "ecs",
         "test": [
             "@test:style",
             "@test:types",
