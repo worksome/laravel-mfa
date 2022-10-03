@@ -5,6 +5,7 @@ namespace Worksome\MultiFactorAuth\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\MultiFactorAuthServiceProvider;
 
 class TestCase extends Orchestra
@@ -22,14 +23,14 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             MultiFactorAuthServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function defineEnvironment($app)
     {
         config()->set('database.default', 'testing');
     }

@@ -48,4 +48,15 @@ return [
 
     ],
 
+    'features' => [
+
+        /**
+         * Laravel's about command provides useful information regarding the state of
+         * your Laravel application. If `about_command` is set to true, we will
+         * show useful information about exchange in about command output.
+         */
+        'about_command' => true,
+
+    ]
+
 ];
