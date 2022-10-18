@@ -31,7 +31,7 @@ final class MultiFactorEmailManager extends Manager
     public function createTwilioVerifyDriver(): TwilioVerifyEmailDriver
     {
         /** @var array{account_id: string, token: string, service_id: string|null} $options */
-        $options = $this->config->get('mfa.services.twilio_verify');
+        $options = $this->config->get('mfa.drivers.twilio_verify');
 
         /** @var Factory $factory */
         $factory = $this->container->make(Factory::class);
