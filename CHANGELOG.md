@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-mfa` will be documented in this file.
 
+## v0.1.3 - 2022-10-18
+
+### Fixed
+- Use Form request for Twilio Verify ([#7](https://github.com/worksome/laravel-mfa/pull/7))
+
 ## v0.1.2 - 2022-10-18
 
 ### Fixed
