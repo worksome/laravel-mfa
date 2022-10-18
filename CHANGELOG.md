@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-mfa` will be documented in this file.
 
+## v0.1.2 - 2022-10-18
+
+### Fixed
+- Update typo of `services` to `drivers` in managers ([#6](https://github.com/worksome/laravel-mfa/pull/6))
+
 ## v0.1.1 - 2022-09-21
 
 ### Fixed
