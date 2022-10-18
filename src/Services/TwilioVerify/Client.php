@@ -53,7 +53,7 @@ class Client
             ->baseUrl(self::BASE_URL)
             ->withBasicAuth($this->accountId, $this->token)
             ->acceptJson()
-            ->asJson();
+            ->asForm();
     }
 
     private function serviceIdRequired(): void
