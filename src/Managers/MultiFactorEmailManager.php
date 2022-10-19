@@ -20,7 +20,7 @@ final class MultiFactorEmailManager extends Manager
     public function getDefaultDriver(): string
     {
         // @phpstan-ignore-next-line
-        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::Email->value), 'null');
+        return $this->config->get(sprintf('mfa.channels.%s.driver', Channel::Email->value)) ?? 'null';
     }
 
     public function createNullDriver(): NullEmailDriver
