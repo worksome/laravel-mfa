@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-mfa` will be documented in this file.
 
+## v0.1.4 - 2022-10-19
+
+### Fixed
+- Resolve null drivers when config is set to `null` literal ([#8](https://github.com/worksome/laravel-mfa/pull/8))
+
 ## v0.1.3 - 2022-10-18
 
 ### Fixed
