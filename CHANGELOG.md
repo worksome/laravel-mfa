@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-mfa` will be documented in this file.
 
+## v0.1.5 - 2022-10-24
+
+### Changed
+- Use the cache contract instead of the concrete class ([#9](https://github.com/worksome/laravel-mfa/pull/9))
+- Use an early return for cleaner code ([#10](https://github.com/worksome/laravel-mfa/pull/10))
+
 ## v0.1.4 - 2022-10-19
 
 ### Fixed
