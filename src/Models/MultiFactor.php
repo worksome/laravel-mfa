@@ -53,7 +53,9 @@ class MultiFactor extends Model
         }
 
         if (! Arr::exists((array) class_implements($userModel), MultiFactorAuthenticatable::class)) {
-            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'.");
+            throw new InvalidMultiFactorAuthenticatableException(
+                "Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'."
+            );
         }
 
         return $this->belongsTo($userModel);

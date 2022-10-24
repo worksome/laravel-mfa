@@ -19,7 +19,9 @@ class ToFieldCaster implements CastsAttributes
     public function get($model, string $key, $value, array $attributes)
     {
         if (! is_string($value)) {
-            throw new InvalidValueException('The given value is not a valid email address, E.164 phone number, or TOTP secret string.');
+            throw new InvalidValueException(
+                'The given value is not a valid email address, E.164 phone number, or TOTP secret string.'
+            );
         }
 
         return match ($model->channel) {

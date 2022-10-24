@@ -5,7 +5,6 @@ namespace Worksome\MultiFactorAuth\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\MultiFactorAuthServiceProvider;
 
 class TestCase extends Orchestra
