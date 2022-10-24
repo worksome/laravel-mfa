@@ -27,7 +27,7 @@ class BasicTotpDriver extends AbstractTotpDriver
         $timestamp = $this->engine->verifyKeyNewer(
             $to->data,
             $code,
-            $this->cache->get($key = 'mfa.mfa_codes.'.md5($code)) // @phpstan-ignore-line
+            $this->cache->get($key = 'mfa.mfa_codes.' . md5($code)) // @phpstan-ignore-line
         );
 
         if ($timestamp === false) {

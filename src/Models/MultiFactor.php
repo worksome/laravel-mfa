@@ -27,7 +27,7 @@ use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableExcepti
  * @property Carbon|null                             $verified_at
  * @property Carbon                                  $created_at
  * @property Carbon                                  $updated_at
- * @property MultiFactorAuthenticatable&Model        $user
+ * @property MultiFactorAuthenticatable              $&Model      $user
  */
 class MultiFactor extends Model
 {
@@ -53,7 +53,9 @@ class MultiFactor extends Model
         }
 
         if (! Arr::exists((array) class_implements($userModel), MultiFactorAuthenticatable::class)) {
-            throw new InvalidMultiFactorAuthenticatableException("Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'.");
+            throw new InvalidMultiFactorAuthenticatableException(
+                "Class '{$userModel}' must implement '" . MultiFactorAuthenticatable::class . "'."
+            );
         }
 
         return $this->belongsTo($userModel);
