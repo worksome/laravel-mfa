@@ -45,7 +45,7 @@ return [
             'driver' => env('MFA_SMS_DRIVER', 'null'),
         ],
 
-        Channel::Totp->value => [
+        \Worksome\MultiFactorAuth\Enums\Channel::Totp->value => [
             'driver' => env('MFA_TOTP_DRIVER', 'null'),
         ],
 
