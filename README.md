@@ -45,20 +45,18 @@ return [
             'driver' => env('MFA_SMS_DRIVER', 'null'),
         ],
 
-    ],
-
-    'drivers' => [
-
-        'twilio_verify' => [
-            'account_id' => env('TWILIO_VERIFY_ACCOUNT_ID'),
-            'token' => env('TWILIO_VERIFY_AUTH_TOKEN'),
-            'service_id' => env('TWILIO_VERIFY_SERVICE_ID'),
+        Channel::Totp->value => [
+            'driver' => env('MFA_TOTP_DRIVER', 'null'),
         ],
 
     ],
+    
+    // ...
 
 ];
 ```
+
+For the full configuration, see [the `config/mfa.php` file](config/mfa.php).
 
 ## Usage
 
@@ -70,6 +68,11 @@ $response = $twoFactorAuth->sms->make(
 
 dd($response);
 ```
+
+### The `about` command
+
+This package adds information to the `artisan about` command. This information can be disabled by setting
+the `mfa.features.about_command` configuration to `false`.
 
 ## Testing
 
