@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Drivers\Totp;
 
-use Illuminate\Cache\Repository as CacheRepository;
+use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use PragmaRX\Google2FA\Google2FA;
 use Worksome\MultiFactorAuth\DataValues\CreationResponse;
 use Worksome\MultiFactorAuth\DataValues\Identifier;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Worksome\MultiFactorAuth\Managers;
 
-use Illuminate\Cache\Repository;
+use Illuminate\Contracts\Cache\Repository as CacheRepository;
 use Illuminate\Support\Manager;
 use PragmaRX\Google2FA\Google2FA;
 use Worksome\MultiFactorAuth\Contracts\Channels\SupportsTotp;
@@ -33,8 +33,8 @@ final class MultiFactorTotpManager extends Manager
         /** @var Google2FA $engine */
         $engine = $this->container->make(Google2FA::class);
 
-        /** @var Repository $cache */
-        $cache = $this->container->make(Repository::class);
+        /** @var CacheRepository $cache */
+        $cache = $this->container->make(CacheRepository::class);
 
         return new BasicTotpDriver($engine, $cache);
     }
