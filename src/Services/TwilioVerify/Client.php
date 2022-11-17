@@ -6,8 +6,10 @@ namespace Worksome\MultiFactorAuth\Services\TwilioVerify;
 
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
+use Illuminate\Http\Client\RequestException;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
+use Worksome\MultiFactorAuth\Exceptions\MultiFactorAuthException;
 
 class Client
 {
@@ -26,24 +28,34 @@ class Client
         return new self($this->client, $this->accountId, $this->token, $service);
     }
 
+    /** @throws MultiFactorAuthException|RequestException */
     public function sendVerification(string $to, Channel $channel): array
     {
         $this->serviceIdRequired();
 
-        return $this->client()->post("/v2/Services/{$this->serviceId}/Verifications", [
-            'To' => $to,
-            'Channel' => $channel->value,
-        ])->throw()->json();
+        try {
+            return $this->client()->post("/v2/Services/{$this->serviceId}/Verifications", [
+                'To' => $to,
+                'Channel' => $channel->value,
+            ])->throw()->json();
+        } catch (RequestException $requestException) {
+            (new TwilioExceptionHandler())->handleRequestException($requestException);
+        }
     }
 
+    /** @throws MultiFactorAuthException|RequestException */
     public function sendVerificationCheck(string $to, string $code): array
     {
         $this->serviceIdRequired();
 
-        return $this->client()->post("/v2/Services/{$this->serviceId}/VerificationCheck", [
-            'To' => $to,
-            'Code' => $code,
-        ])->throw()->json();
+        try {
+            return $this->client()->post("/v2/Services/{$this->serviceId}/VerificationCheck", [
+                'To' => $to,
+                'Code' => $code,
+            ])->throw()->json();
+        } catch (RequestException $requestException) {
+            (new TwilioExceptionHandler())->handleRequestException($requestException);
+        }
     }
 
     private function client(): PendingRequest
