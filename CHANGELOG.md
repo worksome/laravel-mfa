@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-mfa` will be documented in this file.
 
+## v0.1.6 - 2022-11-17
+
+### Added
+- Add exception handling for Twilio errors ([#11](https://github.com/worksome/laravel-mfa/pull/11))
+
 ## v0.1.5 - 2022-10-24
 
 ### Changed
