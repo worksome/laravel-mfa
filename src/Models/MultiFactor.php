@@ -27,7 +27,7 @@ use Worksome\MultiFactorAuth\Exceptions\InvalidMultiFactorAuthenticatableExcepti
  * @property Carbon|null                             $verified_at
  * @property Carbon                                  $created_at
  * @property Carbon                                  $updated_at
- * @property MultiFactorAuthenticatable&Model        $user
+ * @property MultiFactorAuthenticatable              $&Model      $user
  */
 class MultiFactor extends Model
 {
