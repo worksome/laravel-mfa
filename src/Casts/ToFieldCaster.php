@@ -7,12 +7,14 @@ namespace Worksome\MultiFactorAuth\Casts;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use InvalidArgumentException;
 use Worksome\MultiFactorAuth\DataValues\Email\EmailAddress;
+use Worksome\MultiFactorAuth\DataValues\Identifier;
 use Worksome\MultiFactorAuth\DataValues\Sms\E164PhoneNumber;
 use Worksome\MultiFactorAuth\DataValues\Totp\TotpSecret;
 use Worksome\MultiFactorAuth\Enums\Channel;
 use Worksome\MultiFactorAuth\Exceptions\InvalidValueException;
 use Worksome\MultiFactorAuth\Models\MultiFactor;
 
+/** @implements CastsAttributes<Identifier, Identifier> */
 class ToFieldCaster implements CastsAttributes
 {
     /** @param MultiFactor $model */
