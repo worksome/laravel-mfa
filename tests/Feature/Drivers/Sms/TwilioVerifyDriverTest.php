@@ -16,7 +16,7 @@ it('can retrieve an SMS Verification response from the Twilio Verify driver', fu
     $factory->fake([
         '/v2/Services/*/Verifications' => json_decode(file_get_contents(
             getResponseStubFilePath('TwilioVerify/verifications/sms-approved.json')
-        ), true)
+        ), true),
     ]);
 
     $client = new Client(
@@ -45,7 +45,7 @@ it('can retrieve an SMS Verification Check response from the Twilio Verify drive
     $factory->fake([
         '/v2/Services/*/VerificationCheck' => json_decode(file_get_contents(
             getResponseStubFilePath('TwilioVerify/verifications/sms-verify-approved.json')
-        ), true)
+        ), true),
     ]);
 
     $client = new Client(

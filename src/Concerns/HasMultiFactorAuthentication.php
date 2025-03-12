@@ -11,6 +11,8 @@ use Worksome\MultiFactorAuth\Models\MultiFactor;
 
 /**
  * @mixin Model&MultiFactorAuthenticatable
+ *
+ * @phpstan-ignore trait.unused
  */
 trait HasMultiFactorAuthentication
 {
