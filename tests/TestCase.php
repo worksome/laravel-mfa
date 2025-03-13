@@ -16,7 +16,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn(
+            fn (
                 string $modelName,
             ) => 'Worksome\\TwoFactorAuth\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );

@@ -45,7 +45,7 @@ class MultiFactorAuthServiceProvider extends PackageServiceProvider
         AboutCommand::add(
             'Multi-Factor Authentication (MFA)',
             fn () => collect($channels)->mapWithKeys(fn (array $config, string $channel) => [
-                Channel::driverDescription($channel) => $config['driver'] ?? 'null'
+                Channel::driverDescription($channel) => $config['driver'] ?? 'null',
             ])
         );
     }
