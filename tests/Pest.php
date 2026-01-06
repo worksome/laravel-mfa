@@ -8,7 +8,7 @@ uses(TestCase::class)->in('Feature');
 
 // Test functions
 
-function getResponseStubFilePath(string $path = null): string
+function getResponseStubFilePath(string|null $path = null): string
 {
     return __DIR__ . "/stubs/{$path}";
 }
