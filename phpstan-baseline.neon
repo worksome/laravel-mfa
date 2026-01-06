@@ -7,37 +7,7 @@ parameters:
 			path: config/mfa.php
 
 		-
-			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<Worksome\\MultiFactorAuth\\Models\\MultiFactor\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
-			identifier: generics.lessTypes
-			count: 1
-			path: src/Contracts/MultiFactorAuthenticatable.php
-
-		-
-			message: '#^Parameter \#1 \$status of static method Worksome\\MultiFactorAuth\\Enums\\Status\:\:fromTwilioVerify\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Drivers/Email/TwilioVerifyEmailDriver.php
-
-		-
-			message: '#^Parameter \#1 \$status of static method Worksome\\MultiFactorAuth\\Enums\\Status\:\:fromTwilioVerify\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 2
-			path: src/Drivers/Sms/TwilioVerifySmsDriver.php
-
-		-
 			message: '#^Method Worksome\\MultiFactorAuth\\Models\\MultiFactor\:\:user\(\) should return Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Worksome\\MultiFactorAuth\\Models\\MultiFactor, Illuminate\\Database\\Eloquent\\Model&Worksome\\MultiFactorAuth\\Contracts\\MultiFactorAuthenticatable\> but returns Illuminate\\Database\\Eloquent\\Relations\\BelongsTo\<Illuminate\\Database\\Eloquent\\Model&Worksome\\MultiFactorAuth\\Contracts\\MultiFactorAuthenticatable, \$this\(Worksome\\MultiFactorAuth\\Models\\MultiFactor\)\>\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Models/MultiFactor.php
-
-		-
-			message: '#^Method Worksome\\MultiFactorAuth\\Services\\TwilioVerify\\Client\:\:sendVerification\(\) should return array but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Services/TwilioVerify/Client.php
-
-		-
-			message: '#^Method Worksome\\MultiFactorAuth\\Services\\TwilioVerify\\Client\:\:sendVerificationCheck\(\) should return array but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: src/Services/TwilioVerify/Client.php

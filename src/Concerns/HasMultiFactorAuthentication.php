@@ -10,7 +10,9 @@ use Worksome\MultiFactorAuth\Contracts\MultiFactorAuthenticatable;
 use Worksome\MultiFactorAuth\Models\MultiFactor;
 
 /**
- * @mixin Model&MultiFactorAuthenticatable
+ * @phpstan-require-extends Model
+ *
+ * @phpstan-require-implements MultiFactorAuthenticatable
  *
  * @phpstan-ignore trait.unused
  */
@@ -18,7 +20,7 @@ trait HasMultiFactorAuthentication
 {
     abstract public function isMultiFactorAuthenticationEnabled(): bool;
 
-    /** @return HasMany<MultiFactor> */
+    /** @return HasMany<MultiFactor, $this> */
     public function multiFactors(): HasMany
     {
         return $this->hasMany(MultiFactor::class);

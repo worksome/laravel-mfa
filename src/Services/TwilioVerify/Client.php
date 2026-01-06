@@ -28,12 +28,17 @@ class Client
         return new self($this->client, $this->accountId, $this->token, $service);
     }
 
-    /** @throws MultiFactorAuthException|RequestException */
+    /**
+     * @return array{status?: string}
+     *
+     * @throws MultiFactorAuthException|RequestException
+     */
     public function sendVerification(string $to, Channel $channel): array
     {
         $this->serviceIdRequired();
 
         try {
+            // @phpstan-ignore return.type (Prevents having to duplicate the return type)
             return $this->client()->post("/v2/Services/{$this->serviceId}/Verifications", [
                 'To' => $to,
                 'Channel' => $channel->value,
@@ -43,12 +48,17 @@ class Client
         }
     }
 
-    /** @throws MultiFactorAuthException|RequestException */
+    /**
+     * @return array{status?: string}
+     *
+     * @throws MultiFactorAuthException|RequestException
+     */
     public function sendVerificationCheck(string $to, string $code): array
     {
         $this->serviceIdRequired();
 
         try {
+            // @phpstan-ignore return.type (Prevents having to duplicate the return type)
             return $this->client()->post("/v2/Services/{$this->serviceId}/VerificationCheck", [
                 'To' => $to,
                 'Code' => $code,
