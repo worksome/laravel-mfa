@@ -35,6 +35,6 @@ class TwilioVerifySmsDriver extends AbstractSmsDriver
 
         assert(isset($data['status']));
 
-        return Status::fromTwilioVerify($data['status']) === Status::APPROVED;
+        return Status::fromTwilioVerify($data['status']) === Status::Approved;
     }
 }

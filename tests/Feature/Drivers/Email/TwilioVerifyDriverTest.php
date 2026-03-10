@@ -31,12 +31,12 @@ it('can retrieve an Email Verification response from the Twilio Verify driver', 
     $status = $driver->make(new EmailAddress('test@example.org'));
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING)
+        ->status->toBe(Status::Pending)
         ->data->toBeArray()
         ->data->to->toBe('test@example.org')
         ->data->channel->toBe(Channel::Email->value)
         ->data->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        ->data->status->toBe(Status::PENDING->value);
+        ->data->status->toBe(Status::Pending->value);
 });
 
 it('can retrieve an Email Verification Check response from the Twilio Verify driver', function () {

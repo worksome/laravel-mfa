@@ -6,18 +6,18 @@ namespace Worksome\MultiFactorAuth\Enums;
 
 enum Status: string
 {
-    case APPROVED = 'approved';
-    case PENDING = 'pending';
-    case CANCELLED = 'cancelled';
-    case FAILED = 'failed';
+    case Approved = 'approved';
+    case Pending = 'pending';
+    case Cancelled = 'cancelled';
+    case Failed = 'failed';
 
     public static function fromTwilioVerify(string $status): self
     {
         return match ($status) {
-            'approved' => self::APPROVED,
-            'pending', 'unverified' => self::PENDING,
-            'canceled' => self::CANCELLED,
-            default => self::FAILED,
+            'approved' => self::Approved,
+            'pending', 'unverified' => self::Pending,
+            'canceled' => self::Cancelled,
+            default => self::Failed,
         };
     }
 }

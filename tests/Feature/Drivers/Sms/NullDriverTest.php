@@ -9,7 +9,7 @@ use Worksome\MultiFactorAuth\Enums\Status;
 
 it('can send SMS from the Null driver', function () {
     $driver = (new NullSmsDriver())
-        ->fakeStatus(Status::PENDING)
+        ->fakeStatus(Status::Pending)
         ->fakeVerified();
 
     $status = $driver->make(
@@ -17,12 +17,12 @@ it('can send SMS from the Null driver', function () {
     );
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING);
+        ->status->toBe(Status::Pending);
 });
 
 it('can verify SMS from the Null driver', function () {
     $driver = (new NullSmsDriver())
-        ->fakeStatus(Status::PENDING)
+        ->fakeStatus(Status::Pending)
         ->fakeVerified(false);
 
     $phoneNumber = new E164PhoneNumber('+14155552671');
@@ -32,7 +32,7 @@ it('can verify SMS from the Null driver', function () {
     )->toBeFalse();
 
     $driver
-        ->fakeStatus(Status::APPROVED)
+        ->fakeStatus(Status::Approved)
         ->fakeVerified();
 
     expect(

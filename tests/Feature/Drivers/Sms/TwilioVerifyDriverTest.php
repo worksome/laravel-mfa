@@ -31,12 +31,12 @@ it('can retrieve an SMS Verification response from the Twilio Verify driver', fu
     $status = $driver->make(new E164PhoneNumber('+15017122661'));
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING)
+        ->status->toBe(Status::Pending)
         ->data->toBeArray()
         ->data->to->toBe('+15017122661')
         ->data->channel->toBe(Channel::Sms->value)
         ->data->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        ->data->status->toBe(Status::PENDING->value);
+        ->data->status->toBe(Status::Pending->value);
 });
 
 it('can retrieve an SMS Verification Check response from the Twilio Verify driver', function () {

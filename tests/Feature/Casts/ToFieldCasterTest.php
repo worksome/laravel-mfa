@@ -15,7 +15,7 @@ it('can cast from cents to a number', function (Channel $channel, E164PhoneNumbe
         'channel' => $channel,
         'to' => $to,
         'user_id' => 1,
-        'status' => Status::PENDING,
+        'status' => Status::Pending,
     ])->refresh();
 
     expect($factor->channel)->toEqual($channel)

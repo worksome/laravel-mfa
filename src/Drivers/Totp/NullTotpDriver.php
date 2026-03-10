@@ -20,7 +20,7 @@ class NullTotpDriver extends AbstractSmsDriver
 
     public function make(Identifier $to): CreationResponse
     {
-        return new CreationResponse($this->status ?? Status::PENDING, [
+        return new CreationResponse($this->status ?? Status::Pending, [
             'secret' => 'TEST',
         ]);
     }
