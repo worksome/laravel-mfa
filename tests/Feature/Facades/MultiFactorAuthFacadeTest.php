@@ -20,7 +20,7 @@ it('can create an SMS driver from the facade', function () {
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING);
+        ->status->toBe(Status::Pending);
 });
 
 it('can create an email driver from the facade', function () {
@@ -30,7 +30,7 @@ it('can create an email driver from the facade', function () {
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING);
+        ->status->toBe(Status::Pending);
 });
 
 it('can create a TOTP driver from the facade', function () {
@@ -40,5 +40,5 @@ it('can create a TOTP driver from the facade', function () {
 
     expect($response)
         ->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING);
+        ->status->toBe(Status::Pending);
 });

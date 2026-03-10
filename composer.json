@@ -32,8 +32,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Worksome\\MultiFactorAuth\\": "src",
-            "Worksome\\MultiFactorAuth\\Database\\Factories\\": "database/factories"
+            "Worksome\\MultiFactorAuth\\": "src"
         }
     },
     "autoload-dev": {

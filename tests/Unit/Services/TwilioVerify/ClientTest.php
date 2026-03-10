@@ -54,7 +54,7 @@ it('can retrieve an SMS response from the Twilio Verify API check', function () 
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('+15017122661')
         ->channel->toBe(Channel::Sms->value)
-        ->status->toBe(Status::APPROVED->value);
+        ->status->toBe(Status::Approved->value);
 });
 
 it('can retrieve an Email response from the Twilio Verify API', function () {
@@ -103,7 +103,7 @@ it('can retrieve an Email response from the Twilio Verify API check', function (
         ->sid->toBe('VEXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         ->to->toBe('test@example.org')
         ->channel->toBe(Channel::Email->value)
-        ->status->toBe(Status::APPROVED->value);
+        ->status->toBe(Status::Approved->value);
 });
 
 it('throws an exception when no service id is provided', function () {

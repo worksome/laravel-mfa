@@ -9,7 +9,7 @@ use Worksome\MultiFactorAuth\Enums\Status;
 
 it('can make TOTP from the Null driver', function () {
     $driver = (new NullTotpDriver())
-        ->fakeStatus(Status::PENDING)
+        ->fakeStatus(Status::Pending)
         ->fakeVerified();
 
     $status = $driver->make(
@@ -17,12 +17,12 @@ it('can make TOTP from the Null driver', function () {
     );
 
     expect($status)->toBeInstanceOf(CreationResponse::class)
-        ->status->toBe(Status::PENDING);
+        ->status->toBe(Status::Pending);
 });
 
 it('can verify TOTP from the Null driver', function () {
     $driver = (new NullTotpDriver())
-        ->fakeStatus(Status::PENDING)
+        ->fakeStatus(Status::Pending)
         ->fakeVerified(false);
 
     $secret = new TotpSecret('TESTSECRET');
@@ -32,7 +32,7 @@ it('can verify TOTP from the Null driver', function () {
     )->toBeFalse();
 
     $driver
-        ->fakeStatus(Status::APPROVED)
+        ->fakeStatus(Status::Approved)
         ->fakeVerified();
 
     expect(

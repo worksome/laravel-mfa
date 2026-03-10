@@ -16,7 +16,7 @@ class NullSmsDriver extends AbstractSmsDriver
 
     public function make(Identifier $to): CreationResponse
     {
-        return new CreationResponse($this->status ?? Status::PENDING);
+        return new CreationResponse($this->status ?? Status::Pending);
     }
 
     public function verify(Identifier $to, string $code): bool

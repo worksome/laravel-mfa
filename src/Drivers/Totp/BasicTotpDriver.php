@@ -19,7 +19,7 @@ class BasicTotpDriver extends AbstractTotpDriver
 
     public function make(Identifier $to): CreationResponse
     {
-        return new CreationResponse(Status::PENDING);
+        return new CreationResponse(Status::Pending);
     }
 
     public function verify(Identifier $to, string $code): bool

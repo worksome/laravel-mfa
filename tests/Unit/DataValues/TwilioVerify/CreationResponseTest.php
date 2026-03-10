@@ -11,6 +11,6 @@ it('can create a valid creation response', function (Status $status, array $data
         ->status->toBe($status)
         ->data->toBe($data);
 })->with([
-    'status' => [Status::APPROVED, []],
-    'status and data' => [Status::APPROVED, ['valid' => true]],
+    'status' => [Status::Approved, []],
+    'status and data' => [Status::Approved, ['valid' => true]],
 ]);
