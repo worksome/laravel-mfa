@@ -2,15 +2,11 @@
 
 declare(strict_types=1);
 
-use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Worksome\CodingStyle\WorksomeEcsConfig;
 
-return static function (ECSConfig $ecsConfig): void {
-    $ecsConfig->paths([
+return WorksomeEcsConfig::configure()
+    ->withPaths([
         __DIR__ . '/src',
         __DIR__ . '/ecs.php',
         __DIR__ . '/tests',
     ]);
-
-    WorksomeEcsConfig::setup($ecsConfig);
-};
